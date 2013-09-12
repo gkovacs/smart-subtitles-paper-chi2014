@@ -45,9 +45,9 @@
 % since its job is to redefine many LaTeX commands.
 \usepackage[pdftex]{hyperref}
 \hypersetup{
-pdftitle={SIGCHI Conference Proceedings Format},
+pdftitle={Smart Subtitles for Language Learning},
 pdfauthor={LaTeX},
-pdfkeywords={SIGCHI, proceedings, archival format},
+pdfkeywords={subtitles, language learning, interactive videos},
 bookmarksnumbered,
 pdfstartview={FitH},
 colorlinks,
@@ -65,65 +65,86 @@ breaklinks=true,
 % End of preamble. Here it comes the document.
 \begin{document}
 
-\title{SIGCHI Conference Proceedings Format}
+\title{Smart Subtitles for Vocabulary Learning}
 
-\numberofauthors{3}
+\numberofauthors{2}
 \author{
-  \alignauthor 1st Author Name\\
-    \affaddr{Affiliation}\\
-    \affaddr{Address}\\
-    \email{e-mail address}\\
-    \affaddr{Optional phone number}
-  \alignauthor 2nd Author Name\\
-    \affaddr{Affiliation}\\
-    \affaddr{Address}\\
-    \email{e-mail address}\\
-    \affaddr{Optional phone number}    
-  \alignauthor 3rd Author Name\\
-    \affaddr{Affiliation}\\
-    \affaddr{Address}\\
-    \email{e-mail address}\\
-    \affaddr{Optional phone number}
+  \alignauthor Geza Kovacs\\
+    \affaddr{Stanford University}\\
+    \affaddr{Palo Alto, California}\\
+    \email{gkovacs@stanford.edu}
+  \alignauthor Robert C. Miller \\
+    \affaddr{MIT CSAIL}\\
+    \affaddr{Cambridge, MA}\\
+    \email{rcm@mit.edu}
 }
 
 \maketitle
 
 \begin{abstract}
-In this paper we describe the formatting requirements for
-SIGCHI Conference Proceedings, and this sample file
-offers recommendations on writing for the worldwide
-SIGCHI readership. Please review this document even if
-you have submitted to SIGCHI conferences before, some
-format details have changed relative to previous years.
+Language learners often use subtitled videos to help
+them learn the language. However, standard subtitles
+are suboptimal for vocabulary learning, as
+translations are nonliteral and made at the phrase
+level, making it hard to find connections between the
+subtitle text and the words in the video. This paper
+presents Smart Subtitles, which are interactive subtitles
+tailored towards vocabulary learning.
+Smart Subtitles can be automatically generated from common video sources
+such as subtitled DVDs.
+They provide features such as vocabulary definitions on hover, and
+dialog-based video navigation. Our user study shows
+that students studying Chinese learn over twice as much
+vocabulary with Smart Subtitles than with dual
+Chinese-English subtitles. Learners' self-assesed enjoyment
+of the viewing experience, as well as their comprehension
+of the video, both self-assessed and
+as indicated by independent evaluations of their summaries,
+remain unchanged.
 \end{abstract}
 
 \keywords{
-	Guides; instructions; author's kit; conference publications;
-	keywords should be separated by a semi-colon.
-	\textcolor{red}{Mandatory section to be included in your final version.}
+	subtitles; interactive videos; language learning
 }
 
-\category{H.5.m.}{Information Interfaces and Presentation (e.g. HCI)}{Miscellaneous}
-
-See: \url{http://www.acm.org/about/class/1998/}
-for more information and the full list of ACM classifiers
-and descriptors. 
-\textcolor{red}{Mandatory section to be included in your
-final version. On the submission page only the classifiers'
-letter-number combination will need to be entered.}
+\category{H.5.2.}{Information Interfaces and Presentation}{Graphical User Interfaces}
 
 \section{Introduction}
 
-This format is to be used for submissions that are
-published in the conference proceedings.  We wish to give
-this volume a consistent, high-quality appearance. We
-therefore ask that authors follow some simple
-guidelines. In essence, you should format your paper
-exactly like this document. The easiest way to do this is
-simply to download a template from the conference web
-site, and replace the content with your own material.
+Students studying foreign languages often wish to enjoy authentic foreign-language video content. For example, many students cite a desire to be able to watch anime in its original form as their motivation for starting to study Japanese. However, the standard presentations of videos are not accommodating towards language learners. For example, if a learner were watching anime, and did not recognize a word in the dialog, the learner’s would normally have
+to listen carefully to the word, and look it up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, the learner could simply watch a version with subtitles in their native language to enjoy the content. However, they would not learn the foreign language this way.
 
-\section{Page Size and Columns}
+We aim to build a foreign-language video viewing tool
+that maximizes vocabulary learning, while ensuring that the learner
+fully understands the video and enjoys watching it.
+
+\section{Background}
+
+Videos in foreign languages are adapted for foreign audiences in many ways.
+
+One approach is dubbing, where the original foreign-language voice track is removed, and is replaced with a voice track in the viewer’s native language.
+Because the foreign language is no longer present in the dubbed version, this medium is ineffective for foreign language learning.
+
+Another approach is to provide subtitles with the video. In this approach, the foreign-language audio is retained as-is, and the native-language translation is provided in textual format, generally as a line presented at the bottom of the screen.
+Thus, the learner will hear the foreign language, but will not see its written form - therefore, they will need to pay attention to the audio.
+Subtitles have had mixed reactions in the context of language learning - some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them [1].
+That said, other studies have found them to provide no benefit to language learners in learning vocabulary [4]. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation [2].
+The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as the experience level of the learners [6].
+
+
+
+\section{Related Work}
+
+In addition to dual subtitles, there
+have been other attempts to boost vocabulary acquisition rates
+via unconventional, non-interactive subtitles.
+
+
+Much work has been done studying subtitles' effects on language learning,
+which have generally been shown to help language
+learners attain vocabulary.
+There have been some variants on subtitling
+to help learners -- dual subtitles . 
 
 On each page your material (not including the page number) should fit
 within a rectangle of 18 x 23.5 cm (7 x 9.25 in.), centered on a US
