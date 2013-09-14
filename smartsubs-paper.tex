@@ -126,7 +126,9 @@ fully understands the video and enjoys watching it.
 
 \section{Background}
 
-Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure 1.
+Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure~\ref{fig:figure1}.
+
+
 
 \subsection{Presenting Videos to Foreign Viewers}
 
@@ -138,6 +140,17 @@ Thus, the learner will hear the foreign language, but will not see its written f
 Subtitles have had mixed reactions in the context of language learning - some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them [1].
 That said, other studies have found them to provide little benefit to language learners in learning vocabulary [4]. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation [2].
 The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as the experience level of the learners [6].
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\columnwidth]{subtitle-types-2column}
+\caption{Ways that a Chinese video can be presented
+to English-speaking viewers and language learners.
+Note that GliFlix does not actually support Chinese; these are mockups.
+The mockup for Smart Subtitles does not show some features, such
+as dialog-based navigation.}
+\label{fig:figure1}
+\end{figure}
 
 \subsection{Presenting Videos to Language Learners}
 
@@ -176,11 +189,20 @@ other language-learning tasks such as learning pronunciation and grammar.
 
 \section{Smart Subtitles Interface}
 
-We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation operations, as well as vocabulary-learning features, which are shown in Figure 3.1. Smart Subtitles can be automatically generated for any video, provided that a caption is available.
+We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation operations, as well as vocabulary-learning features, which are shown in Figure~\ref{fig:figure2}. Smart Subtitles can be automatically generated for any video, provided that a caption is available.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\columnwidth]{smartsubs-features}
+\caption{Screenshot of the Smart Subtitles system,
+with callouts pointing out features that help users
+learn vocabulary and navigate the video.}
+\label{fig:figure2}
+\end{figure}
 
 \subsection{Navigation Features}
 
-The navigation features of our interface were developed based on foreign language learners' video viewing patterns. In various informal interviews conducted with fellow language learners who enjoyed watching subtitled foreign-language videos for learning purposes, they reported that they often reverse-seeked to the beginning of the current line of dialog to review the portion that had just been said. Therefore, we aimed to make this process as seamless as possible. In our interface, clicking on a section of the dialog will seek the video to the start of that dialog, as shown in Figure 3.2.
+The navigation features of our interface were developed based on foreign language learners' video viewing patterns. In interviews conducted with language learners who enjoyed watching subtitled foreign-language videos for learning purposes, they reported that they often reverse-seeked to the beginning of the current line of dialog to review the portion that had just been said. Therefore, we aimed to make this process as seamless as possible. In our interface, clicking on a section of the dialog will seek the video to the start of that dialog.
 
 Another activity that some language learners reported doing was attempting to locate the line of dialog where a particular word or phrase had been said. Therefore, we enable easy seeking through the video based on dialog. The transcript is prominently shown, and can be navigated by pressing the up/down keys, or scrolling. It is also possible to search the video transcript for occurrences of particular words.
 
@@ -188,9 +210,9 @@ Another activity that some language learners reported doing was attempting to lo
 
 The vocabulary learning features of our interface are aimed towards the use case where the viewer encounters an unknown word, and would like to look up its definition. The interface allows a user to hover over any word, and it will show the definition.
 
-In addition, for languages such as Japanese and Chinese, which have non-phonetic writing systems, the interface also shows the phonetic representations for learners. For Chinese, it shows pinyin, the standard romanization system for Chinese, as shown in Figure 3.4. For Japanese, it shows hiragana, the Japanese phonetic writing system.
+In addition, for languages such as Japanese and Chinese, which have non-phonetic writing systems, the interface also shows the phonetic representations for learners. For Chinese, it shows pinyin, the standard romanization system for Chinese. For Japanese, it shows hiragana, the Japanese phonetic writing system.
 
-To address these cases where the word-level translations will not be enough for the learner to comprehend the dialog, we include an option for the learner to get a full translation for the phrase, by pressing a button, as shown in Figure 3.7. The phrase-level translation can be obtained from a subtitle track in the viewer's native language if it was supplied, as in the case when we have a video with Chinese audio and we have both English and Chinese subtitles available. Alternatively, if we only have a transcript available, and not a subtitle in the viewer's native language, we rely on a machine translation service to obtain a phrase-level translation. Either Microsoft's or Google's translation service can be used.
+Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, we include an button that shows learners a phrase-level translation when pressed.
 
 \section{Implementation}
 
@@ -270,7 +292,7 @@ Overall, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video cli
 
 Unfortunately, because a single character-level error will often make the entire line of dialog incomprehensible to learners, in the Smart Subtitles application the dialog-level error rate is the metric of interest. The subtitles output by our algorithm thus require manual corrections before they can be presented to learners. However, the presence and timings of 98\% of dialog lines were correctly recognized, so the information output by our algorithm helps with specifying subtitle timings.
 
-\subsection{Getting Definitions and Romanizations}
+\subsection{Getting Word Definitions and Romanizations}
 
 For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we simply look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT [19]. This dictionary provides both a list of definitions, as well as the pinyin for each word.
 
@@ -279,6 +301,14 @@ The process of listing definitions is more difficult for languages that have ext
 Rather than implementing our own stemming algorithm for Japanese, we adapted the one that is implemented in the Rikaikun Chrome extension [31].
 
 For other languages, such as German, instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary [41] for these languages tends to already list the conjugated forms of words with a reference back to the original, and therefore we simply generated dictionaries and stemming tables by scraping this information from Wiktionary.
+
+\subsection{Getting Phrase-level Translations}
+
+The phrase-level translation is obtained from a subtitle track in the viewer's native language, if it was provided to 
+the program. For example, if we gave Smart Subtitles a Chinese-language DVD
+that contained both English and Chinese subtitles, then it would
+extract phrase-level translations form the English subtitles.
+Alternatively, if we only have a transcript available, and not a subtitle in the viewer's native language, we rely on a machine translation service to obtain a phrase-level translation. Either Microsoft's or Google's translation service can be used.
 
 \section{User Study}
 
