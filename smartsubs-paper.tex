@@ -157,15 +157,15 @@ as dialog-based navigation.}
 
 In addition to subtitles, other video comprehension aids have been experimented with in the context of language learning:
 
-With a \emph{transcript} (also referred to as a \emph{caption}), the video is shown along with the text in the
-language of the audio (in this case, the foreign language). Transcripts are generally used to
+With a \emph{transcript}, also known as a \emph{caption}, the video is shown along with the text in the
+language of the audio, which in this case is the foreign language. Transcripts are generally used to
 assist hearing-impaired viewers. However, they can also be beneficial to language learners for
-comprehension, particularly if they have better reading ability in the foreign language than
-listening comprehension ability \cite{danan2004captioning}. However, transcripts harm comprehension, unless used by advanced
-learners with high reading ability in the foreign language \cite{bianchi2008captions}.
+comprehension, particularly if they have better reading ability than
+listening comprehension ability \cite{danan2004captioning}. However, transcripts can harm comprehension, unless they are used by advanced
+learners with good reading ability \cite{bianchi2008captions}.
 
 With \emph{reverse subtitles} \cite{danan1992reversed}, the video has an audio track and a single subtitle, just as with regular
-subtitles. However, the key distinction from conventional subtitles in the viewer's native language is that here, the audio is in the native language, and
+subtitles. However, in reverse subtitles, the audio is in the native language, and
 the subtitle shows the foreign language. This takes advantage of the fact that subtitle reading is
 a semi-automatic behavior \cite{d2002foreign}, meaning that the presence of text on the screen tends to attract
 people's eyes to it, causing them to read it. Therefore, this should attract attention to the foreign-
@@ -184,7 +184,7 @@ Indeed, dual subtitles have been found to be at least as effective for vocabular
 either captions or subtitles alone \cite{raine2012incidental}.
 
 \emph{GliFlix} \cite{gliflix} is a variant on the conventional, native-language subtitle, which adds translations to the foreign language for the most common words that
-appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is a (un) line of dialog", showing that ``a" in French is ``un". In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
+appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is (\emph{est}) a line of dialog", showing that \emph{is} in French is \emph{est}. In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
 subtitles, though not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that because it shows only the most common vocabulary words in a dialog, then learners will not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, this approach is likely less beneficial than dual subtitles for
 other language-learning tasks such as learning pronunciation and grammar.
 
@@ -225,7 +225,7 @@ a system to extract subtitles and captions from videos, as well as an interactiv
 
 \subsection{Extracting Subtitles from Videos}
 
-Our system takes digital text captions in either the SubRip (SRT) \cite{subrip} or Web Video Text Tracks (WebVVT) format \cite{webvvt} as input.
+Our system takes digital text captions in either the SubRip (SRT) \cite{subrip} or Web Video Text Tracks (WebVTT) formats \cite{webvtt} as input.
 These are plain-text formats that specify a time range for each 
 line of dialog, and the text that should be displayed.
 We can download these from
@@ -241,7 +241,7 @@ is shown in Figure~\ref{fig:figure3}.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\columnwidth]{subtitle-sources}
-\caption{Smart Subtitles uses subtitles in the WebVVT format
+\caption{Smart Subtitles uses subtitles in the WebVTT format
 by default, but it can extract subtitles from various other sources.}
 \label{fig:figure3}
 \end{figure}
@@ -253,29 +253,29 @@ stating when each line of dialog was said is unavailable.
 Examples include transcripts of lectures on sites such as
 OpenCourseWare, as well as lyrics for music videos.
 
-It is possible to add timing information to videos automatically based on speech recognition techniques, which is called ``forced alignment".
-However, we found that popular software for doing forced alignment
-yielded poor results on certain videos, particularly those with background
-noise and in foreign languages.
+It is possible to add timing information to videos automatically based on speech recognition techniques, which is called \emph{forced alignment} \cite{sailalign}.
+However, we found that existing software for doing forced alignment
+yields poor results on certain videos, particularly those with background
+noise and in non-English languages.
 
 Thus, to generate timing information,
-we wrote an interface that plays the video,
-and the user is instructed to press the down button whenever a new
+we wrote an interface where the user
+views the video, and presses the down button whenever a new
 line of dialog starts.
 We gather this data for several users to guard against user errors,
 and use it to compute the timing information for the transcript.
 
 \subsubsection{Extracting Subtitles from Overlayed-Bitmap Formats}
 
-Overlayed-bitmap subtitles are pre-rendered versions of the text which are overlayed onto the video when playing. They consist of an index mapping time-ranges to the bitmap image which should be overlayed on top of the video at that time. This is the standard subtitle format used in DVDs, where is it called VobSub, as well as other optical-disk video formats.
+Overlayed-bitmap subtitles are pre-rendered versions of the text which are overlayed onto the video when playing. They consist of an index mapping time-ranges to the bitmap image which should be overlayed on top of the video at that time. This is the standard subtitle format used in DVDs, where is it called VobSub.
 
-Because we cannot read text directly from the overlayed-bitmap images in DVDs, Smart Subtitles uses Optical Character Recognition (OCR) to extract the text out of each image. Then, it merges this with information about time ranges to convert them to the SRT subtitle format. Our implementation can use either the Microsoft OneNote \cite{onenote} OCR engine, or the free Tesseract \cite{tesseract} OCR engine.
+Because we cannot read text directly from the overlayed-bitmap images in DVDs, Smart Subtitles uses Optical Character Recognition (OCR) to extract the text out of each image. Then, it merges this with information about time ranges to convert them to the WebVTT subtitle format. Our implementation can use either the Microsoft OneNote \cite{onenote} OCR engine, or the free Tesseract \cite{tesseract} OCR engine.
 
 \subsubsection{Extracting Subtitles from Hard-Subtitled Videos}
 
-Many videos come with hard subtitles, which include the subtitle as part of the video stream. Hard subtitles have the advantage that they can be displayed on any video player. However, hard subtitles have the disadvantage that they are non-removable. Additionally, hard subtitles are the most difficult to get machine-readable text out of, because the subtitle must first be isolated from the background video, before we can apply OCR to obtain the text. Existing tools that perform this task, such as SubRip, are time-consuming, as they require the user to specify the color and location of each subtitle line in the video.
+Many videos come with hard subtitles, which include the subtitle as part of the video stream. Hard subtitles have the advantage that they can be displayed on any video player. However, hard subtitles have the disadvantage that they are non-removable. Additionally, hard subtitles are difficult to extract machine-readable text from, because the subtitle must first be isolated from the background video, before we can apply OCR to obtain the text. Existing tools that perform this task, such as SubRip, are time-consuming, as they require the user to specify the color and location of each subtitle line in the video \cite{subrip}.
 
-That said, hard subtitles are ubiquitous, particularly online. Chinese-language dramas on popular video-streaming sites such as Youku are almost always hard-subtitled in Chinese. Thus, to allow Smart Subtitles to be used with hard-subtitled videos, we devised an algorithm which can identify Chinese subtitles in hard-subtitled videos and extract them out.
+That said, hard-subtitled videos are ubiquitous, particularly online. Chinese-language dramas on popular video-streaming sites such as Youku are frequently hard-subtitled in Chinese. Thus, to allow Smart Subtitles to be used with hard-subtitled videos, we devised an algorithm which can identify Chinese subtitles in hard-subtitled videos and extract them out.
 
 Our hard-subtitle extraction algorithm takes advantage of the properties of subtitles which we have found to hold true in the Chinese-language hard-subbed material we have observed:
 
@@ -312,7 +312,7 @@ Otherwise, the current frame is the start of a new line of dialog.
 Next, we come up with a reference image for each line of dialog, by taking hot pixels which occur in the majority of frames in that line of dialog. This eliminates any moving pixels from the background, using our
 assumption that the subtitle text remain static on screen.
 
-Next, we extract the text from the reference images generated for each line of dialog, via OCR. We merge adjacent lines of dialog for which the OCR engine detected the same text. We eliminate lines of dialog for which the OCR engine failed to detect text. Finally, we output the subtitle in WebVVT format.
+Next, we extract the text from the reference images generated for each line of dialog, via OCR. We merge adjacent lines of dialog for which the OCR engine detected the same text. We eliminate lines of dialog for which the OCR engine failed to detect text. Finally, we output the subtitle in WebVTT format.
 
 The accuracy of our hard-subtitle extraction algorithm depends on the resolution of the video and
 the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial - using Tesseract instead of OneNote more than tripled the character error rate,
@@ -362,7 +362,7 @@ Our user evaluations for Smart Subtitles was a within-subjects user study that c
 
 \subsection{Materials}
 
-The video we showed was the first 5 minutes, and the next 5 minutes, in the first episode of the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). This particular video was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVVT-format subtitles.
+The video we showed was the first 5 minutes, and the next 5 minutes, in the first episode of the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). This particular video was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVTT-format subtitles.
 
 \subsection{Participants}
 
@@ -533,7 +533,7 @@ Average rating results from the remaining three raters are shown in Figure~\ref{
 There was no significant difference in the quality of summaries written
 by the learners between the Smart Subtitles and Dual Subtitles conditions,
 according to any of the 4 quality metrics. The Krippendorff's alpha,
-which measures inter-rater agreement, across the raters was 0.7.
+which measures inter-rater agreement \cite{krippendorff}, across the raters was 0.7.
 
 \subsection{Free-form Feedback}
 
