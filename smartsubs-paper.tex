@@ -277,24 +277,44 @@ Many videos come with hard subtitles, which include the subtitle as part of the 
 
 That said, hard subtitles are ubiquitous, particularly online. Chinese-language dramas on popular video-streaming sites such as Youku are almost always hard-subtitled in Chinese. Thus, to allow Smart Subtitles to be used with hard-subtitled videos, we devised an algorithm which can identify Chinese subtitles in hard-subtitled videos and extract them out.
 
-Our hard-subtitle extraction algorithm takes advantage of properties of subtitles which we have found to hold true in the Chinese-language hard-subbed material we have observed:
+Our hard-subtitle extraction algorithm takes advantage of the properties of subtitles which we have found to hold true in the Chinese-language hard-subbed material we have observed:
 
 \begin{enumerate}[noitemsep]
 \item Subtitles in the same video are of the same color, with some variance due to compression artifacts.
-\item Subtitles in the same video appear on the same line.
-\item Subtitles appear somewhere in the bottom vertical quarter of the screen.
-\item Subtitles are horizontally centered.
-\item Subtitles do not move around and are not animated, and will remain static on-screen for a second or more to give the viewer time to read them.
-\item Characters in the subtitle generally have the same height. This is a Chinese-specific assumption, as Chinese characters are generally of uniform size.
-\item Characters in the subtitle have many corners. This is also a Chinese-specific assumption, owing to the graphical complexity of Chinese characters.
+\item Subtitles in the same video appear in the same vertical region.
+\item Subtitles remain static on-screen, so they do not move around and are not animated.
+\item Characters in the subtitle have many corners. This is a Chinese-specific assumption, owing to the graphical complexity of Chinese characters.
 \end{enumerate}
 
-Our hard-subtitle extraction first determines the color of the subtitle and its general location, extracts out pixels that are likely part of the subtitle, and applies a number of post-processing filters before running OCR on the extracted pixels to determine the subtitle text. Specifically, the algorithm is:
+\textbf{QUESTION do we actually want to describe the algorithm in this
+much detail? It's pretty complex and is probably of little interest to CHI audiences...}
 
-\textbf{TODO do we actually want to describe the algorithm? It's pretty complex
-and is probably of little interest to CHI audiences...}
+Our hard-subtitle extraction algorithm first attempts to determine the color
+of the subtitle. To do so, it first runs the Harris corner detector
+on each frame of the video. Then, it computes a histogram of color values of pixels near corners, buckets similar color values, and considers the most frequent color to be the subtitle color. This approach works because Chinese characters contain many corners,
+so corners will be detected near the subtitle, as illustrated
+in Figure~\ref{fig:figure3}.
 
-The performance of the algorithm depends on the resolution of the video and
+Next, the algorithm determines which region the subtitle is displayed on the screen. Possible vertical regions are given scores according to how many of the pixels within them match the subtitle color and are
+near corners, across all video frames. A penalty is given to larger vertical
+areas, to ensure that it does not grow beyond the subtitle area. We consider the vertical region
+that scores the highest under this metric to be the subtitle area.
+
+Next, the algorithm determines where each line of dialog in the subtitle
+starts and ends. For each frame, it considers the set of pixels within the subtitle area,
+which match the subtitle color, and are near the corners detected by the Harris corner detector. We will refer to such pixels as \emph{hot pixels}. If the number of hot pixels in the frame is less than
+an eighth of the average number of hot pixels across all frames,
+then we consider there to not be any subtitle displayed in that frame.
+If the majority of hot pixels match those from the previous frame, then
+we consider the current frame to be a continuation of the line of dialog from the previous frame.
+Otherwise, the current frame is the start of a new line of dialog.
+
+Next, we come up with a reference image for each line of dialog, by taking hot pixels which occur in the majority of frames in that line of dialog. This eliminates any moving pixels from the background, using our
+assumption that the subtitle text remain static on screen.
+
+Next, we extract the text from the reference images generated for each line of dialog, via OCR. We merge adjacent lines of dialog for which the OCR engine detected the same text. We eliminate lines of dialog for which the OCR engine failed to detect text. Finally, we output the subtitle in WebVVT format.
+
+The accuracy of our hard-subtitle extraction algorithm depends on the resolution of the video and
 the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial - using Tesseract instead of OneNote more than tripled the character error rate,
 as Tesseract is much less resilient to extraneous pixels in the input.
 
