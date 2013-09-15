@@ -213,7 +213,7 @@ The vocabulary learning features of our interface are aimed towards the use case
 
 In addition, for languages such as Japanese and Chinese, which have non-phonetic writing systems, the interface also shows the phonetic representations for learners. For Chinese, it shows \emph{pinyin}, the standard romanization system for Chinese. For Japanese, it shows \emph{hiragana}, the Japanese phonetic writing system.
 
-Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, we include an button that shows learners a phrase-level translation when pressed.
+Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, we include an button that shows learners a translation for the currently displayed line of dialog when pressed.
 
 \section{Implementation}
 
@@ -336,7 +336,7 @@ A particular issue which occurs with Chinese and Japanese is that the boundaries
 words are not indicated in writing. To determine what words are present
 in each line of dialog in these languages, we instead use statistical word segmenters. We use the Stanford Word Segmenter \cite{stanfordsegmenter} for Chinese, and JUMAN \cite{juman} for Japanese.
 
-\subsection{Getting Word Definitions and Romanizations}
+\subsection{Listing Word Definitions and Romanizations}
 
 Now that we have determined what the words in each line of dialog are, we need
 to obtain word definitions and romanizations. These will be displayed when
@@ -348,13 +348,26 @@ Obtaining definitions for a word is more difficult for languages that have exten
 
 For the other supported languages, instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary for these languages tends to already list the conjugated forms of words with a reference back to the original \cite{wiktionary}. Therefore, we generated dictionaries and stemming tables by scraping this information from Wiktionary.
 
-\subsection{Getting Phrase-level Translations}
+For a given foreign-language
+word, there can be many possible translations depending on
+the context the word is used in.
+Hence, we wish to determine the most likely translation for each word,
+based the contents of the line of dialog it appears in.
+This problem is referred to as \emph{translation-sense disambiguation}
+\cite{translationsense}.
+Smart Subtitles can optionally use translation-sense disambiguation
+to rank the word definitions displayed to users, putting
+more likely definitions of a word higher on the definition list.
+However, because the translation-sense disambiguation feature was not yet implemented at the time of our user study, users were instead shown word definitions ranked according to their overall frequency of usage,
+as stated by the dictionary.
 
-The phrase-level translation is obtained from a subtitle track in the viewer's native language, if it was provided to 
+\subsection{Getting Translations for Full Lines of Dialog}
+
+Translations for full lines of dialog are obtained from a subtitle track in the viewer's native language, if it was provided to 
 the program. For example, if we gave Smart Subtitles a Chinese-language DVD
 that contained both English and Chinese subtitles, then it would
-extract phrase-level translations form the English subtitles.
-Alternatively, if we only have a transcript available, and not a subtitle in the viewer's native language, we rely on a machine translation service to obtain a phrase-level translation. Either Microsoft's or Google's translation service can be used.
+extract translations for each line of dialog from the English subtitles.
+Alternatively, if we only have a transcript available, and not a subtitle in the viewer's native language, we rely on a machine translation service to obtain a translation. Either Microsoft's or Google's translation service can be used.
 
 \section{User Study}
 
@@ -547,18 +560,18 @@ The tone coloring feature in particular was not received as well. The only comme
 
 \subsection{Feature Usage during User Studies}
 
-During our user studies, we instrumented the interface so that it would record actions such as dialog navigation, mousing over to reveal vocabulary definitions, and clicking to reveal full phrase-level translations.
+During our user studies, we instrumented the interface so that it would record actions such as dialog navigation, mousing over to reveal vocabulary definitions, and clicking to reveal translations for the current line of dialog.
 
 Viewing strategies with Smart Subtitles varied across
 participants, though all made at least some use of both
-the word-level and phrase-level translation functionality.
+the word-level and dialog-line translation functionality.
 Word-level translations were heavily used. On average,
 users hovered over words in 3/4 of the lines of dialog
 (standard deviation 0.22).
 The words hovered over the longest tended to be less
 common words, indicating that participants were using
 the feature for defining unfamiliar words, as intended.
-Participants tended to use phrase-level translations
+Participants tended to use dialog-line translations
 sparingly. On average they clicked on the translate
 button on only 1/3 of the lines of dialog
 (standard deviation 0.15).
@@ -582,7 +595,7 @@ enjoyment of the video as similarly high.
 Independent ratings of summaries written by participants
 further confirm that comprehension levels when using Smart Subtitles
 match those when using dual subtitles.
-Given that users only viewed phrase-level translations for a
+Given that users only viewed dialog-line translations for a
 third of the dialog lines when using Smart Subtitles,
 yet matched their comprehension levels with dual Chinese-English subtitles,
 this suggests that word-level translations are often sufficient for
