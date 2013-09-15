@@ -63,6 +63,7 @@ breaklinks=true,
 % create a shortcut to typeset table headings
 \newcommand\tabhead[1]{\small\textbf{#1}}
 
+\usepackage{CJKutf8}
 
 % End of preamble. Here it comes the document.
 \begin{document}
@@ -138,8 +139,8 @@ Because the foreign language is no longer present in the dubbed version, this me
 Another approach is to provide \emph{subtitles} with the video. Here, the foreign-language audio is retained as-is, and the native-language translation is provided in textual format, generally as a line presented at the bottom of the screen.
 Thus, the learner will hear the foreign language, but will not see its written form - therefore, they will need to pay attention to the audio.
 Subtitles have had mixed reactions in the context of language learning - some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them \cite{danan2004captioning}.
-That said, other studies have found them to provide little benefit to language learners in learning vocabulary [4]. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation [2].
-The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as the experience level of the learners [6].
+That said, other studies have found them to provide little benefit to language learners in learning vocabulary \cite{danan1992reversed}. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation \cite{mitterer2009foreign}.
+The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as the experience level of the learners \cite{bianchi2008captions}.
 
 \begin{figure}[!h]
 \centering
@@ -160,13 +161,13 @@ With a \emph{transcript} (also referred to as a \emph{caption}), the video is sh
 language of the audio (in this case, the foreign language). Transcripts are generally used to
 assist hearing-impaired viewers; however, they can also be beneficial to language learners for
 comprehension, particularly if they have better reading ability in the foreign language than
-listening comprehension ability [1]. However, transcripts are only beneficial to more advanced
-learners whose language competence is already near the level of the video [6].
+listening comprehension ability \cite{danan2004captioning}. However, transcripts are only beneficial to more advanced
+learners whose language competence is already near the level of the video \cite{bianchi2008captions}.
 
-With \emph{reverse subtitles}, the video has an audio track and a single subtitle, just as with regular
+With \emph{reverse subtitles} \cite{danan1992reversed}, the video has an audio track and a single subtitle, just as with regular
 subtitles. However, the key distinction from conventional subtitles in the viewer's native language is that here, the audio is in the native language, and
 the subtitle shows the foreign language. This takes advantage of the fact that subtitle reading is
-a semi-automatic behavior [5], meaning that the presence of text on the screen tends to attract
+a semi-automatic behavior \cite{d2002foreign}, meaning that the presence of text on the screen tends to attract
 people's eyes to it, causing them to read it. Therefore, this should attract attention to the foreign-
 language text. The presentation of the foreign language in written form may also be helpful with
 certain learners whose reading comprehension ability is stronger than their listening
@@ -180,9 +181,9 @@ viewer's native language as well. In this way, a learner can both read the writt
 as well as hear the spoken representation of the dialog, and will still have the translation
 available. Thus, of these options, dual subtitles provide the most information to the learner.
 Indeed, dual subtitles have been found to be at least as effective for vocabulary acquisition as
-either captions or subtitles alone [3]
+either captions or subtitles alone \cite{raine2012incidental}.
 
-\emph{GliFlix} is a variant on the conventional, native-language subtitle, which adds translations to the foreign language for the most common words that
+\emph{GliFlix} \cite{gliflix} is a variant on the conventional, native-language subtitle, which adds translations to the foreign language for the most common words that
 appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is a (un) line of dialog", showing that ``a" in French is ``un". In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
 subtitles, though not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that because it shows only the most common vocabulary words in a dialog, then learners will not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, this approach is likely less beneficial than dual subtitles for
 other language-learning tasks such as learning pronunciation and grammar.
@@ -224,8 +225,7 @@ a system to extract subtitles and captions from videos, as well as an interactiv
 
 \subsection{Extracting Subtitles from Videos}
 
-Our system takes digital text captions in either the 
-SubRip (SRT) or Web Video Text Tracks (WebVVT) formats as input.
+Our system takes digital text captions in either the SubRip (SRT) \cite{subrip} or Web Video Text Tracks (WebVVT) format \cite{webvvt} as input.
 These are plain-text formats that specify a time range for each 
 line of dialog, and the text that should be displayed.
 We can download these from
@@ -269,7 +269,7 @@ and use it to compute the timing information for the transcript.
 
 Overlayed-bitmap subtitles are pre-rendered versions of the text which are overlayed onto the video when playing. They consist of an index mapping time-ranges to the bitmap image which should be overlayed on top of the video at that time. This is the standard subtitle format used in DVDs, where is it called VobSub, as well as other optical-disk video formats.
 
-Because we cannot read text directly from the overlayed-bitmap images in DVDs, Smart Subtitles uses Optical Character Recognition (OCR) to extract the text out of each image. Then, it merges this with information about time ranges to convert them to the SRT subtitle format. Our implementation can use either the Microsoft OneNote [42] OCR engine, or the free Tesseract [44] OCR engine.
+Because we cannot read text directly from the overlayed-bitmap images in DVDs, Smart Subtitles uses Optical Character Recognition (OCR) to extract the text out of each image. Then, it merges this with information about time ranges to convert them to the SRT subtitle format. Our implementation can use either the Microsoft OneNote \cite{onenote} OCR engine, or the free Tesseract \cite{tesseract} OCR engine.
 
 \subsubsection{Extracting Subtitles from Hard-Subtitled Videos}
 
@@ -290,7 +290,7 @@ Our hard-subtitle extraction algorithm takes advantage of the properties of subt
 much detail? It's pretty complex and is probably of little interest to CHI audiences...}
 
 Our hard-subtitle extraction algorithm first attempts to determine the color
-of the subtitle. To do so, it first runs the Harris corner detector
+of the subtitle. To do so, it first runs the Harris corner detector \cite{harris1988combined}
 on each frame of the video. Then, it computes a histogram of color values of pixels near corners, buckets similar color values, and considers the most frequent color to be the subtitle color. This approach works because Chinese characters contain many corners,
 so corners will be detected near the subtitle, as illustrated
 in Figure~\ref{fig:figure3}.
@@ -318,19 +318,19 @@ The accuracy of our hard-subtitle extraction algorithm depends on the resolution
 the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial - using Tesseract instead of OneNote more than tripled the character error rate,
 as Tesseract is much less resilient to extraneous pixels in the input.
 
-Overall, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized roughly 80\% of the dialog lines completely correctly, with roughly 95\% of all characters correct. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining errors were due to character-level errors.
+Overall, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized roughly 80\% of the dialog lines completely correctly. Overall, roughly 95\% of all characters were correctly recognized. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining dialog-level errors were due to misrecognized characters.
 
-Unfortunately, because a single character-level error will often make the entire line of dialog incomprehensible to learners, in the Smart Subtitles application the dialog-level error rate is the metric of interest. The subtitles output by our algorithm thus require manual corrections before they can be presented to learners. However, the presence and timings of 98\% of dialog lines were correctly recognized, so the information output by our algorithm helps with specifying subtitle timings.
+%Unfortunately, because a single character-level error will often make the entire line of dialog incomprehensible to learners, in the Smart Subtitles application the dialog-level error rate is the metric of interest. The subtitles output by our algorithm thus require manual corrections before they can be presented to learners. However, the presence and timings of 98\% of dialog lines were correctly recognized, so the information output by our algorithm helps with specifying subtitle timings.
 
 \subsection{Getting Word Definitions and Romanizations}
 
-For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we simply look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT [19]. This dictionary provides both a list of definitions, as well as the pinyin for each word.
+For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we simply look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT \cite{mdbg}. This dictionary provides both a list of definitions, as well as the pinyin for each word.
 
-The process of listing definitions is more difficult for languages that have extensive conjugation, such as Japanese. In particular, bilingual dictionaries (such as WWWJDIC [20], which is the dictionary we use for Japanese) will only include information about the infinitive (unconjugated) forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning “ate” is 食べた [tabeta], though this word does not appear in the dictionary; only the infinitive form “eat” 食べる [taberu] is present. In order to provide a definition, we need to perform stemming, which is the process of deriving the infinitive form a conjugated word.
+The process of listing definitions is more difficult for languages that have extensive conjugation, such as Japanese. In particular, bilingual dictionaries, such as WWWJDIC \cite{wwwjdic}, the dictionary we use for Japanese, will only include information about the infinitive, unconjugated forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning ``ate" is \begin{CJK}{UTF8}{min}食べた\end{CJK} [tabeta], though this word does not appear in the dictionary. Only the infinitive form ``eat" \begin{CJK}{UTF8}{min}食べる\end{CJK} [taberu] is present. In order to provide a definition, we need to perform \emph{stemming}, which is the process of deriving the infinitive form from a conjugated word.
 
-Rather than implementing our own stemming algorithm for Japanese, we adapted the one that is implemented in the Rikaikun Chrome extension [31].
+Rather than implementing our own stemming algorithm for Japanese, we adapted the one that is implemented in the Rikaikun Chrome extension \cite{rikaikun}.
 
-For other languages, such as German, instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary [41] for these languages tends to already list the conjugated forms of words with a reference back to the original, and therefore we simply generated dictionaries and stemming tables by scraping this information from Wiktionary.
+For other languages, such as German, instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary for these languages tends to already list the conjugated forms of words with a reference back to the original \cite{wiktionary}. Therefore, we generated dictionaries and stemming tables by scraping this information from Wiktionary.
 
 \subsection{Getting Phrase-level Translations}
 
@@ -342,11 +342,11 @@ Alternatively, if we only have a transcript available, and not a subtitle in the
 
 \section{User Study}
 
-Our user evaluations for Smart Subtitles was a within-subjects user study that compared vocabulary learning with this system, to the amount of vocabulary learning when using parallel English-Chinese subtitles. Specifically, we wished to compare the effectiveness of our system in teaching vocabulary to learners, compared to dual subtitles, which are believed to be the current optimal means of vocabulary acquisition during video viewing [3].
+Our user evaluations for Smart Subtitles was a within-subjects user study that compared vocabulary learning with this system, to the amount of vocabulary learning when using parallel English-Chinese subtitles. Specifically, we wished to compare the effectiveness of our system in teaching vocabulary to learners, compared to dual subtitles, which are believed to be among the best ways to learn vocabulary while viewing videos \cite{raine2012incidental}.
 
 \subsection{Materials}
 
-The video we showed was the first 5 minutes, and the next 5 minutes, in the first episode of the drama 我是老师 (I am a Teacher). This particular video was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce SRT-format subtitles.
+The video we showed was the first 5 minutes, and the next 5 minutes, in the first episode of the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). This particular video was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVVT-format subtitles.
 
 \subsection{Participants}
 
@@ -409,7 +409,7 @@ of a word from the video, providing the context it had appeared in.}
 \label{fig:figure5}
 \end{figure}
 
-For both types of questions, we additionally asked the participant to self-report whether they had known the meaning of the word before watching the video, so that we could determine whether it was a newly learned word, or if they had previously learned it from some external source. This self-reporting mechanism is commonly used in vocabulary-learning evaluations for foreign-language learning [12].
+For both types of questions, we additionally asked the participant to self-report whether they had known the meaning of the word before watching the video, so that we could determine whether it was a newly learned word, or if they had previously learned it from some external source. This self-reporting mechanism is commonly used in vocabulary-learning evaluations for foreign-language learning \cite{wesche1996assessing}.
 
 \subsubsection{Questionnaire}
 
