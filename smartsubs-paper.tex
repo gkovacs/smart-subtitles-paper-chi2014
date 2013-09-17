@@ -371,14 +371,14 @@ in each line of dialog in these languages, we instead use statistical word segme
 \subsection{Listing Word Definitions and Romanizations}
 
 Now that we have determined what the words in each line of dialog are, we need
-to obtain word definitions and romanizations. These will be displayed when
+to obtain word romanizations and definitions. These will be displayed when
 the user hovers over words in the dialog.
 
 For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT \cite{mdbg}. This dictionary provides a list of definitions and the pinyin for each word.
 
-Obtaining definitions for a word is more difficult for languages that have extensive conjugation, such as Japanese. In particular, bilingual dictionaries, such as WWWJDIC \cite{wwwjdic}, the dictionary we use for Japanese, will only include information about the infinitive, unconjugated forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning ``ate" is \begin{CJK}{UTF8}{min}食べた\end{CJK} [tabeta], though this word does not appear in the dictionary. Only the infinitive form ``eat" \begin{CJK}{UTF8}{min}食べる\end{CJK} [taberu] is present. In order to provide a definition, we need to perform \emph{stemming}, which is the process of deriving the infinitive form from a conjugated word. Rather than implementing our own stemming algorithm for Japanese, we adapted the one that is implemented in the Rikaikun Chrome extension \cite{rikaikun}.
+Obtaining definitions for a word is more difficult for languages that have extensive conjugation, such as Japanese. Bilingual dictionaries such as WWWJDIC \cite{wwwjdic}, the dictionary we use for Japanese, will only include information about the infinitive, unconjugated forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning ``ate" is \begin{CJK}{UTF8}{min}食べた\end{CJK} [tabeta], though this word does not appear in the dictionary. Only the infinitive form ``eat" \begin{CJK}{UTF8}{min}食べる\end{CJK} [taberu] is present. In order to provide a definition, we need to perform \emph{stemming}, which is the process of deriving the infinitive form from a conjugated word. We use the stemming algorithm that is implemented in the Rikaikun Chrome extension \cite{rikaikun} to perform stemming for Japanese.
 
-For the other supported languages, instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary for these languages tends to already list the conjugated forms of words with a reference back to the original \cite{wiktionary}. Therefore, we generated dictionaries and stemming tables by scraping this information from Wiktionary.
+For the other supported languages (French, German, and Spanish), instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary for these languages tends to already list the conjugated forms of words with a reference back to the original \cite{wiktionary}. Therefore, we generated dictionaries and stemming tables by scraping this information from Wiktionary.
 
 For a given foreign-language
 word, there can be many possible translations depending on
@@ -403,20 +403,20 @@ Alternatively, if we only have a transcript available, and not a subtitle in the
 
 \section{User Study}
 
-Our user study for Smart Subtitles was a within-subjects study that compared vocabulary learning with this system, to the amount of vocabulary learning when using dual English-Chinese subtitles. Specifically, we wished to compare the effectiveness of our system in teaching vocabulary to learners, compared to dual subtitles, which are believed to be among the best ways to learn vocabulary while viewing videos \cite{raine2012incidental}.
+We evaluate Smart Subtitles with a within-subject user study that compares the amount of vocabulary learned when watching videos with our system, to the amount of vocabulary learned when using dual English-Chinese subtitles. We wish to compare the effectiveness of our system in teaching vocabulary to dual subtitles, which are believed to be among the best ways to learn vocabulary while viewing videos \cite{raine2012incidental}.
 
 \subsection{Materials}
 
-We used a pair of 5-minute video clips, both taken from the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). One clip was the first 5 minutes of the first episode of the drama, while the second clip was the next 5 minutes. These video clips was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVTT-format subtitles.
+We used a pair of 5-minute video clips, both taken from the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). One clip is the first 5 minutes of the first episode of the drama, while the second clip is the next 5 minutes. We chose these video clips because the vocabulary usage, grammar, and pronunciations are standard modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, is everyday, ordinary settings, so while there is still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVTT-format subtitles.
 
 \subsection{Participants}
 
 Our study participants were 8 undergraduate students who were enrolled in a third-semester Chinese class. Our study was conducted at the end of the semester, so participants had approximately 3 full semesters of Chinese learning experience. 4 of our participants were male, and 4 were female.
-Participants were paid \$20.
+Participants were paid \$20 for participating in the hour-long study.
 
 \subsection{Research Questions}
 
-The questions our study sought to answer were:
+The questions our study sought to answer are:
 
 \begin{enumerate}[noitemsep]
 \item Will users learn more vocabulary using Smart Subtitles than with dual subtitles?
@@ -474,7 +474,7 @@ For both types of questions, we additionally asked the participant to self-repor
 
 \subsubsection{Questionnaire}
 
-After completing the vocabulary quiz, we asked them to write a summary of the clip they had
+After participants completed the vocabulary quiz, we asked them to write a summary of the clip they had
 just seen, describing as many details as they could recall. Then, they completed
 a questionnaire where they rated the following questions on a 7-point Likert scale:
 
@@ -505,7 +505,7 @@ between the tools.
 
 Since the vocabulary quiz answers were done in free-response format, a third-party native Chinese speaker was asked to mark the learners' quiz answers as being either correct or incorrect. The grader was blind as to which condition or which learner the answer was coming from.
 
-As shown in Figure~\ref{fig:figure6}, both the average number of questions which were correctly answered and the number of new words learned was greater with Smart Subtitles than with dual subtitles. We measured the number of new words learned as the number of correctly answered questions, excluding those for which they marked that they had previously known the word. There was no significant difference in the number of words known beforehand in each condition. A t-test shows that there were significantly more questions correctly answered (t=3.49, df=7, p $<$ 0.05) and new words learned (t=5, df=7, p $<$ 0.005) when using Smart Subtitles.
+As shown in Figure~\ref{fig:figure6}, both the average number of words which were correctly defined and the number of new words learned was greater with Smart Subtitles than with dual subtitles. We measured the number of new words learned as the number of correctly defined words, excluding words that participants had marked as previously known. There was no significant difference in the number of words known beforehand in each condition. A t-test shows that there were significantly more questions correctly answered (t=3.49, df=7, p $<$ 0.05) and new words learned (t=5, df=7, p $<$ 0.005) when using Smart Subtitles.
 
 \begin{figure}[!h]
 \centering
@@ -598,7 +598,7 @@ The tone coloring feature in particular was not received as positively as the ot
 During our user studies, we instrumented the interface so that it would record actions such as dialog navigation, mousing over to reveal vocabulary definitions, and clicking to reveal translations for the current line of dialog.
 
 Viewing strategies with Smart Subtitles varied across
-participants, though all made at least some use of both
+participants, though all made some use of both
 the word-level and dialog-line translation functionality.
 Word-level translations were heavily used. On average,
 users hovered over words in 75\% of the lines of dialog
@@ -618,8 +618,9 @@ intermediate-level learners to understand dialogs.
 \section{Conclusion and Future Work}
 
 We have presented Smart Subtitles, an interactive
-transcript with features to help learners, such as vocabulary
-definitions on hover and dialog-based video navigation.
+transcript interface which features vocabulary
+definitions on hover and dialog-based video navigation
+to help language learners learn vocabulary while watching videos.
 They can be automatically generated from
 common sources of videos and subtitles, such as DVDs.
 
@@ -642,8 +643,8 @@ won’t know and automatically showing their definitions.
 
 Much work can still be done in the area of incorporating multimedia into learning. Our current Smart Subtitles system focuses on written vocabulary learning while watching of dramas and movies.
 However, we believe that augmenting video can also benefit other aspects of language learning. For example, we could
-incorporate visualizations for helping learn grammar and sentence patterns,
-and speech synthesis for helping learn pronunciation. We could also 
+incorporate visualizations to help teach grammar and sentence patterns,
+and speech synthesis to help teach pronunciation. We could also 
 pursue further gains in vocabulary learning and comprehension,
 by dynamically altering the video playback rate, or by adding
 quizzes into the video to ensure that the user is continuing to pay attention.
@@ -657,10 +658,10 @@ we could remove the need for an interactive display, and simply
 allowed the user to learn while listening to the music.
 Multimedia that is naturally interactive, such as Karaoke,
 likewise presents interesting opportunities for
-making boring tasks, such as practicing prononciation, more interesting
+making boring tasks, such as practicing pronunciation, more interesting
 to learners.
 
-We hope our work leads to a future where people can learn foreign languages more enjoyably by being immersed and enjoying the culture of foreign countries, in the form of their multimedia, without requiring dedicated effort towards making the material education-friendly or even fully translating it.
+We hope our work leads to a future where people can learn foreign languages more enjoyably by being immersed in foreign multimedia, without requiring dedicated effort towards making the material education-friendly or even fully translating it.
 
 \balance
 
