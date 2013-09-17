@@ -202,68 +202,6 @@ other language-learning tasks such as learning pronunciation and grammar.
 
 \section{Smart Subtitles Interface}
 
-We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation features and vocabulary-learning features, which are shown in Figure~\ref{fig:figure1} and will be discussed in the following section. %Smart Subtitles can be automatically generated for any video, provided that a caption is available.
-
-Smart Subtitles is an interactive web-based application that runs in the user's browser. The user simply provides it with a video and a caption, from either a streaming service or from the local filesystem, and the interactive video player will start once it finishes automatically generating annotations for the subtitles.
-
-%\subsection{Design Goals of Smart Subtitles}
-
-%We designed Smart Subtitles based on discussions
-%with students learning Chinese about their experiences watching
-%Chinese videos.
-%We interviewed 5 students who had studied Chinese for at least
-%one year, who regularly watched Chinese-language dramas and movies
-%for their own enjoyment.
-%Students were asked to describe the types of aids they used when watching videos, and
-%any activities they did while watching videos to help them learn,
-%and what they tended to learn during the process of watching.
-
-%Students reported that they watched Chinese videos with English subtitles,
-%either by visiting online video streaming sites such as Youtube or Youku on their laptops, or by playing DVDs.
-%None viewed videos with no subtitles or just Chinese captions,
-%because the videos they watched used
-%complex language that they could not understand without subtitles.
-
-%Two students had previously viewed material that was presented
-%in the dual subtitles format. Both reported that they read the English
-%subtitle first, because their top priority was to understand the
-%video. One reported she did not bother reading the Chinese subtitle,
-%because there was not enough time after reading the English subtitle,
-%and she did not recognize Chinese characters well.
-%The other student
-%said that he would sometimes repeat the dialog to read the Chinese sutbtitle,
-%as he felt this helped him learn.
-
-%Students reported that they did not usually
-%pause subtitled videos when watching them for enjoyment.
-%However, one reported that he would repeat
-%lines that seemed like useful expressions.
-%Another student reported he occasionally
-%used an online dictionary to look up words in videos.
-%However, he did not usually do so while playing the video,
-%because switching windows to look up words was distracting.
-%Instead, he would just take note of words he wanted to learn while
-%watching the video, and look them up later.
-%Because he found it difficult to look up words in Chinese due to mishearing them, he usually just looked up English words from the English subtitle.
-
-%Students reported that watching videos was helpful for
-%refreshing their memory of material they had learned,
-%and combining words they already knew into new expressions.
-%However, with the exception of the student who jotted down words
-%and looked them up later, students reported they had only learned
-%a few new words from watching subtitled videos.
-
-%This led to our design goals for the Smart Subtitles interface:
-
-%\begin{enumerate}[noitemsep]
-%\item Should encourage users to try understanding the foreign-language dialog, before falling back on a translation.
-%\item Should provide romanizations, so it can be used by
-%people with limited ability to read the foreign script.
-%\item Should allow users to easily navigate through lines of dialog, so users can review and repeat them.
-%\item Should allow users to easily look up words from the dialog without pausing or leaving the video player, or entering words themselves.
-%\item Should not interfere with the users' ability to understand and enjoy the %video.
-%\end{enumerate}
-
 \begin{figure*}%[!h]
 \centering
 \includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate}
@@ -276,6 +214,12 @@ If word-level translations are not sufficient for users to understand the dialog
 line of dialog, as shown on the right.}
 \label{fig:figure25}
 \end{figure*}
+
+We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation features and vocabulary-learning features, which are shown in Figure~\ref{fig:figure3} and will be discussed in the following section. %Smart Subtitles can be automatically generated for any video, provided that a caption is available.
+
+Smart Subtitles is an interactive web application that runs in the user's browser. The user simply provides it with a video and a caption, from either a streaming service or from the local filesystem, and
+and the interactive video player will start once it finishes automatically
+generating annotations.
 
 \subsection{Navigation Features}
 
@@ -293,27 +237,33 @@ Another activity that language learners reported doing was attempting to locate 
 
 \subsection{Vocabulary Learning Features}
 
-The vocabulary learning features of our interface are aimed towards the use case where the viewer encounters an unknown word, and would like to look up its definition. The interface allows the viewer to hover over any word in
-the dialog to show its definition.
+The vocabulary learning features of our interface are aimed towards the use case where the viewer encounters an unknown word, and would like to look up its definition. The interface allows the user to hover over any word in
+the dialog to show its definition, as shown in Figure~\ref{fig:figure25}.
+
+Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, Smart Subtitles includes a button that shows learners a translation for the currently displayed line of dialog when pressed, as shown in Figure~\ref{fig:figure25}.
 
 In addition, for languages such as Japanese and Chinese, which have non-phonetic writing systems, the interface also shows the phonetic representations for learners. For Chinese, it shows \emph{pinyin}, the standard romanization system for Chinese. For Japanese, it shows \emph{hiragana}, the Japanese phonetic writing system.
 
-Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, we include a button that shows learners a translation for the currently displayed line of dialog when pressed.
+Tones are an essential part of Chinese pronunciation that language learners often struggle to remember. To make them more visually salient, Smart Subtitles color-codes the pinyin displayed according to the tone, in addition to displaying the tone mark. The tone colorization scheme is taken from the Chinese through Tone and Color series \cite{tonecolor}, which claims to help learners remember tones, and has been adopted by popular online dictionaries for language learners \cite{mdbg}.
 
 \section{Implementation}
 
+A system like Smart Subtitles faces several implementation challenges, such as extracting subtitles from various video, listing vocabulary words, and determining their definitions and romanizations. This section will discuss techniques for addressing these challenges.
+
 Smart Subtitles are automatically generated from 
 captions with the assistance of dictionaries and 
-machine translation. The Smart Subtitles system
+machine translation. Our implentation currently supports Chinese, Japanese, French, German, and Spanish, but support for other languages can easily be added if a bilingual dictionary is available.
+
+The Smart Subtitles system
 is implemented as 2 main parts:
-a system to extract subtitles and captions from videos, and an interactive interface to display them to learners.
+a system that extract subtitles and captions from videos,
+and a web application that learners use to play interactive videos.
 
 \subsection{Extracting Subtitles from Videos}
 
 Our system takes digital text captions in either the SubRip (SRT) \cite{subrip} or Web Video Text Tracks (WebVTT) formats \cite{webvtt} as input.
-These are plain-text formats that specify a time range for each 
-line of dialog, and the text that should be displayed.
-We can download these from
+These are plain-text formats that specify the textual lines of dialog, along with their respective display times.
+Users can download these from
 various online services, such as Universal Subtitles.
 However, many possible sources of subtitles either
 do not come with timing information, or are in
@@ -326,8 +276,7 @@ is shown in Figure~\ref{fig:figure3}.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\columnwidth]{subtitle-sources}
-\caption{Smart Subtitles uses subtitles in the WebVTT format
-by default, but it can also extract subtitles from various other sources.}
+\caption{An overview of the sources that the Smart Subtitles system can extract subtitles from, and what the process of subtitle extraction consists of for each source.}
 \label{fig:figure3}
 \end{figure}
 
@@ -344,11 +293,12 @@ yields poor results on certain videos, particularly those with background
 noise and in non-English languages.
 
 Thus, to generate timing information,
-we wrote an interface where the user
-views the video, and presses the down button whenever a new
+we wrote an interface where an annotator
+views the video, and presses the down arrow key whenever a new
 line of dialog starts.
-We gather this data for several users to guard against user errors,
-and use it to compute the timing information for the transcript.
+We gather this data for several annotators to guard against errors,
+and use it to compute the timing information for the transcript,
+generating a WebVTT-format subtitle that we can then provide to the Smart Subtitles system.
 
 \subsubsection{Extracting Subtitles from Overlayed-Bitmap Formats}
 
@@ -358,16 +308,16 @@ Because we cannot read text directly from the overlayed-bitmap images in DVDs, S
 
 \subsubsection{Extracting Subtitles from Hard-Subtitled Videos}
 
-Many videos come with hard subtitles, which include the subtitle as part of the video stream. Hard subtitles have the advantage that they can be displayed on any video player. However, hard subtitles have the disadvantage that they are non-removable. Additionally, hard subtitles are difficult to extract machine-readable text from, because the subtitle must first be isolated from the background video, before we can apply OCR to obtain the text. Existing tools that perform this task, such as SubRip, are time-consuming, as they require the user to specify the color and location of each subtitle line in the video \cite{subrip}.
+Many videos come with \emph{hard subtitles}, where the subtitle is baked into the video stream. Hard subtitles have the advantage that they can be displayed on any video player. However, hard subtitles have the disadvantage that they are non-removable. Additionally, hard subtitles are difficult to extract machine-readable text from, because the pixels representing the subtitle must first be isolated from the rest of the video, before we can apply OCR to obtain the text. Existing tools that perform this task, such as SubRip, are time-consuming, as they require the user to specify the color and location of each subtitle line in the video \cite{subrip}.
 
 That said, hard-subtitled videos are ubiquitous, particularly online. Chinese-language dramas on popular video-streaming sites such as Youku are frequently hard-subtitled in Chinese. Thus, to allow Smart Subtitles to be used with hard-subtitled videos, we devised an algorithm which can identify Chinese subtitles in hard-subtitled videos and extract them out.
 
-Our hard-subtitle extraction algorithm takes advantage of the properties of subtitles which we have found to hold true in the Chinese-language hard-subbed material we have observed:
+Our hard-subtitle extraction algorithm takes advantage of the following properties of subtitles. We have generally found these properties to hold true in the Chinese-language hard-subbed material we have observed:
 
 \begin{enumerate}[noitemsep]
 \item Subtitles in the same video are of the same color, with some variance due to compression artifacts.
 \item Subtitles in the same video are consistently shown in the same vertical region of the screen.
-\item Subtitles remain static on-screen, so they do not move around and are not animated.
+\item The position of subtitles is static, so they do not move around and are not animated.
 \item Characters in the subtitle have many corners. This is a Chinese-specific assumption, owing to the graphical complexity of Chinese characters.
 \end{enumerate}
 
@@ -397,7 +347,7 @@ assumption that the subtitle text remain static on screen.
 Next, we extract the text from the reference images generated for each line of dialog, via OCR. We merge adjacent lines of dialog for which the OCR engine detected the same text. We eliminate lines of dialog for which the OCR engine failed to detect text. Finally, we output the subtitle in WebVTT format.
 
 The accuracy of our hard-subtitle extraction algorithm depends on the resolution of the video and
-the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial - using Tesseract instead of OneNote more than tripled the character error rate,
+the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial. Using Tesseract instead of OneNote more than tripled the character error rate,
 as Tesseract is less resilient to extraneous pixels in the input.
 
 As an illustrative example, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized roughly 80\% of the dialog lines completely correctly. Overall, roughly 95\% of all characters were correctly recognized. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining dialog-level errors were due to characters that were misrecognized by OCR.
@@ -409,7 +359,7 @@ As an illustrative example, on a set of 4 high-resolution Chinese hard-subtitled
 The subtitles generated by our subtitle extractor provide us with the text of each line of dialog. For many languages,
 going from each line of dialog to the list of words it includes is fairly simple, since words are
 delimited by spaces and punctuation. For European languages supported by
-Smart Subtitles (English, French, Spanish, and German), we list
+Smart Subtitles (English, French, Spanish, and German), the Smart Subtitles system lists
 vocabulary words in each line of dialog using the
 tokenizer included in the Natural
 Language Toolkit (NLTK) \cite{nltk}.
@@ -603,7 +553,7 @@ After watching each video, partcipants wrote a summary describing the clip they 
 To evaluate the quality of the summaries written by our participants, we hired 5 Chinese-English bilingual raters to rate the summaries. The raters were hired from the oDesk contracting site, and were paid \$15 apiece. Raters were
 first asked to view the clips, and write a summary in English to show that they had viewed and understood the clips.
 Then, we presented them the summaries
-written by students in random order. For each summary, we indicated which clip was being summarized, but the raters were blind as to which condition the student had viewed the clip under. Raters were asked to rate, on a scale of 1 (worst) to 7 (best):
+written by students in random order. For each summary, we indicated which clip was being summarized, but the raters were blind as to which condition the student had viewed the clip under. Raters were asked to rate on a scale of 1 (worst) to 7 (best):
 
 \begin{itemize}[noitemsep]
 \item From reading the summary, how much does the student seem to understand this clip overall? %(7: completely seems to understand this part of the clip; 1: doesn't seem to understand it at all)
