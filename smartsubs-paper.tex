@@ -117,23 +117,34 @@ and independent evaluations of their summaries.
 
 \category{H.5.2.}{Information Interfaces and Presentation}{Graphical User Interfaces}
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\columnwidth]{smartsubs-features}
+\caption{Screenshot of the Smart Subtitles system,
+with callouts pointing out features that help users
+learn vocabulary and navigate the video.}
+\label{fig:figure1}
+\end{figure}
+
 \section{Introduction}
 
 Students studying foreign languages often wish to enjoy authentic foreign-language video content. For example, many students cite a desire to be able to watch anime in its original form as their motivation for starting to study Japanese \cite{anime}. However, the standard presentations of videos are not accommodating towards language learners. For example, if a learner were watching anime, and did not recognize a word in the dialog, the learner would normally have
-to listen carefully to the word, pause the video, and look the word up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, the learner could simply watch a version that is dubbed, or a version with subtitles in their native language to enjoy the content. However, they might not learn the foreign language effectively this way.
+to listen carefully to the word, pause the video, and look the word up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, learners could simply watch a version that is dubbed, or a version with subtitles in their native language to enjoy the content. However, they might not learn the foreign language effectively this way.
 
 We aim to build a foreign-language video viewing tool
 that maximizes vocabulary learning, while ensuring that the learner
 fully understands the video and enjoys watching it.
 
+% elaborate on contributions here!
+
 \section{Related Work}
 
-Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure~\ref{fig:figure1} and are described in more detail below.
+Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure~\ref{fig:figure2} and are described in more detail below.
 
 \subsection{Presenting Videos to Foreign Viewers}
 
-One approach used to adapt videos for viewers who do not understand the original language is \emph{dubbing}. Here, the original foreign-language voice track is removed, and is replaced with a voice track in the viewer's native language.
-Because the foreign language is no longer present in the dubbed version, this medium is ineffective for foreign language learning \cite{dubbing}.
+One approach used to adapt videos for viewers who do not understand the original language is \emph{dubbing}. Here, the original foreign-language voice track is removed and is replaced with a voice track in the viewer's native language.
+Because the foreign language is no longer present in the dubbed version, dubbed videos are ineffective for foreign language learning \cite{dubbing}.
 
 Another approach is to provide \emph{subtitles} with the video. Here, the foreign-language audio is retained as-is, and the native-language translation is provided in textual format, generally as a line presented at the bottom of the screen.
 Thus, the learner will hear the foreign language, but will not see its written form. Therefore, they must pay close attention to the audio
@@ -145,26 +156,28 @@ The mixed results that studies have found on the effects of subtitles on languag
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\columnwidth]{subtitle-types-2column}
-\caption{Mockups showing ways that a Chinese video can be presented
+\caption{Illustration showing how Smart Subtitles
+compares to existing ways that a Chinese video can be presented
 to English-speaking viewers and language learners.
-Note that GliFlix does not actually support Chinese, and
-the mockup for Smart Subtitles does not show some features, such
-as dialog-based navigation.}
-\label{fig:figure1}
+Note that GliFlix does not actually support Chinese.
+To conserve space, this diagram only shows the vocabulary-learning features of Smart Subtitles, not the navigation features.}
+\label{fig:figure2}
 \end{figure}
 
 \subsection{Presenting Videos to Language Learners}
 
 %Whether or not videos should at all be presented to language learners with subtitles or similar aids is itself a matter of debate. Subtitles, in particular, are frowned upon, because they do nothing to deter learners from simply reading in their native language. Some language educators are of the opinion that since students will not have subtitles or similar aids when they visit the foreign country, then they should not be provided with any when viewing videos either. Nevertheless, various video comprehension aids have been experimented with in the context of language learning:
 
-In addition to subtitles, other video comprehension aids have been experimented with in the context of language learning:
+In addition to subtitles, there exist other techniques to aid language learning
+while watching videos, described below.
 
 With a \emph{transcript}, also known as a \emph{caption}, the video is shown along with the text in the
 language of the audio, which in this case is the foreign language. Transcripts are generally used to
 assist hearing-impaired viewers. However, they can also be beneficial to language learners for
 comprehension, particularly if they have better reading ability than
-listening comprehension ability \cite{danan2004captioning}. However, transcripts can harm comprehension, unless they are used by advanced
-learners with good reading ability \cite{bianchi2008captions}.
+listening comprehension ability \cite{danan2004captioning}. However,
+for learners with only basic reading abilities,
+using only a transcript can lead to decreased comprehension compared to subtitles \cite{bianchi2008captions}.
 
 With \emph{reverse subtitles} \cite{danan1992reversed}, the video has an audio track and a single subtitle, just as with regular
 subtitles. However, in reverse subtitles, the audio is in the native language, and
@@ -177,96 +190,111 @@ comprehension. That said, because the foreign language is presented only in writ
 learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
 
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
-However, in addition to displaying a subtitle in the viewer's native language, they also display a caption in the original language. This way, a learner can both read and hear the dialog in the foreign language, and still have a translation
+Dual subtitles simultaneously display a subtitle in the viewer's native language, and a transcript in the original language. This way, a learner can both read and hear the dialog in the foreign language, and still have a translation
 available. Thus, of these options, dual subtitles provide the most information to the learner.
 Indeed, dual subtitles have been found to be at least as effective for vocabulary acquisition as
 either subtitles or captions alone \cite{raine2012incidental}.
 
 \emph{GliFlix} \cite{gliflix} is a variant on the conventional, native-language subtitle, which adds translations to the foreign language for the most common words that
 appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is (\emph{est}) a line of dialog", showing that \emph{is} in French is \emph{est}. In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
-subtitles, though not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that because it shows only the most common vocabulary words in a dialog, then learners may not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, this approach is likely less beneficial than dual subtitles for
+subtitles, though not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that because it shows only the most common vocabulary words in a dialog, learners may not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, this approach is likely less beneficial than dual subtitles for
 other language-learning tasks such as learning pronunciation and grammar.
 
 \section{Smart Subtitles Interface}
 
-We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation features and vocabulary-learning features, which are shown in Figure~\ref{fig:figure2}. Smart Subtitles can be automatically generated for any video, provided that a caption is available.
+We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation features and vocabulary-learning features, which are shown in Figure~\ref{fig:figure1} and will be discussed in the following section. %Smart Subtitles can be automatically generated for any video, provided that a caption is available.
 
-\begin{figure}[!h]
+Smart Subtitles is an interactive web-based application that runs in the user's browser. The user simply provides it with a video and a caption, from either a streaming service or from the local filesystem, and the interactive video player will start once it finishes automatically generating annotations for the subtitles.
+
+%\subsection{Design Goals of Smart Subtitles}
+
+%We designed Smart Subtitles based on discussions
+%with students learning Chinese about their experiences watching
+%Chinese videos.
+%We interviewed 5 students who had studied Chinese for at least
+%one year, who regularly watched Chinese-language dramas and movies
+%for their own enjoyment.
+%Students were asked to describe the types of aids they used when watching videos, and
+%any activities they did while watching videos to help them learn,
+%and what they tended to learn during the process of watching.
+
+%Students reported that they watched Chinese videos with English subtitles,
+%either by visiting online video streaming sites such as Youtube or Youku on their laptops, or by playing DVDs.
+%None viewed videos with no subtitles or just Chinese captions,
+%because the videos they watched used
+%complex language that they could not understand without subtitles.
+
+%Two students had previously viewed material that was presented
+%in the dual subtitles format. Both reported that they read the English
+%subtitle first, because their top priority was to understand the
+%video. One reported she did not bother reading the Chinese subtitle,
+%because there was not enough time after reading the English subtitle,
+%and she did not recognize Chinese characters well.
+%The other student
+%said that he would sometimes repeat the dialog to read the Chinese sutbtitle,
+%as he felt this helped him learn.
+
+%Students reported that they did not usually
+%pause subtitled videos when watching them for enjoyment.
+%However, one reported that he would repeat
+%lines that seemed like useful expressions.
+%Another student reported he occasionally
+%used an online dictionary to look up words in videos.
+%However, he did not usually do so while playing the video,
+%because switching windows to look up words was distracting.
+%Instead, he would just take note of words he wanted to learn while
+%watching the video, and look them up later.
+%Because he found it difficult to look up words in Chinese due to mishearing them, he usually just looked up English words from the English subtitle.
+
+%Students reported that watching videos was helpful for
+%refreshing their memory of material they had learned,
+%and combining words they already knew into new expressions.
+%However, with the exception of the student who jotted down words
+%and looked them up later, students reported they had only learned
+%a few new words from watching subtitled videos.
+
+%This led to our design goals for the Smart Subtitles interface:
+
+%\begin{enumerate}[noitemsep]
+%\item Should encourage users to try understanding the foreign-language dialog, before falling back on a translation.
+%\item Should provide romanizations, so it can be used by
+%people with limited ability to read the foreign script.
+%\item Should allow users to easily navigate through lines of dialog, so users can review and repeat them.
+%\item Should allow users to easily look up words from the dialog without pausing or leaving the video player, or entering words themselves.
+%\item Should not interfere with the users' ability to understand and enjoy the %video.
+%\end{enumerate}
+
+\begin{figure*}%[!h]
 \centering
-\includegraphics[width=\columnwidth]{smartsubs-features}
-\caption{Screenshot of the Smart Subtitles system,
-with callouts pointing out features that help users
-learn vocabulary and navigate the video.}
-\label{fig:figure2}
-\end{figure}
-
-\subsection{Design Goals of Smart Subtitles}
-
-We designed Smart Subtitles based on discussions
-with students learning Chinese about their experiences watching
-Chinese videos.
-We interviewed 5 students who had studied Chinese for at least
-one year, who regularly watched Chinese-language dramas and movies
-for their own enjoyment.
-Students were asked to describe the types of aids they used when watching videos, and
-any activities they did while watching videos to help them learn,
-and what they tended to learn during the process of watching.
-
-Students reported that they watched Chinese videos with English subtitles,
-either by visiting online video streaming sites such as Youtube or Youku on their laptops, or by playing DVDs.
-None viewed videos with no subtitles or just Chinese captions,
-because the videos they watched used
-complex language that they could not understand without subtitles.
-
-Two students had previously viewed material that was presented
-in the dual subtitles format. Both reported that they read the English
-subtitle first, because their top priority was to understand the
-video. One reported she did not bother reading the Chinese subtitle,
-because there was not enough time after reading the English subtitle,
-and she did not recognize Chinese characters well.
-The other student
-said that he would sometimes repeat the dialog to read the Chinese sutbtitle,
-as he felt this helped him learn.
-
-Students reported that they did not usually
-pause subtitled videos when watching them for enjoyment.
-However, one reported that he would repeat
-lines that seemed like useful expressions.
-Another student reported he occasionally
-used an online dictionary to look up words in videos.
-However, he did not usually do so while playing the video,
-because switching windows to look up words was distracting.
-Instead, he would just take note of words he wanted to learn while
-watching the video, and look them up later.
-Because he found it difficult to look up words in Chinese due to mishearing them, he usually just looked up English words from the English subtitle.
-
-Students reported that watching videos was helpful for
-refreshing their memory of material they had learned,
-and combining words they already knew into new expressions.
-However, with the exception of the student who jotted down words
-and looked them up later, students reported they had only learned
-a few new words from watching subtitled videos.
-
-This led to our design goals for the Smart Subtitles interface:
-
-\begin{enumerate}[noitemsep]
-\item Should encourage users to try understanding the foreign-language dialog, before falling back on a translation.
-\item Should provide romanizations, so it can be used by
-people with limited ability to read the foreign script.
-\item Should allow users to easily navigate through lines of dialog, so users can review and repeat them.
-\item Should allow users to easily look up words from the dialog without pausing or leaving the video player, or entering words themselves.
-\item Should not interfere with the users' ability to understand and enjoy the video.
-\end{enumerate}
+\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate}
+\caption{Smart Subtitles has several interactive features. It allows users to easily navigate the video and
+review lines of dialog, either by clicking onto the line of dialog to replay,
+scrolling the mouse wheel,
+or pressing arrow keys on the keyboard. Users can hover over words
+in the dialog to show their definitions, as shown on the left.
+If word-level translations are not sufficient for users to understand the dialog, they can also press a button to show a translation for the current
+line of dialog, as shown on the right.}
+\label{fig:figure25}
+\end{figure*}
 
 \subsection{Navigation Features}
 
-We developed the navigation features of our interface based on foreign language learners' video viewing patterns. In our interviews, learners reported that they often reverse-seeked to the beginning of the current line of dialog to review the portion that had just been said. Therefore, we aimed to make this process as seamless as possible. In our interface, clicking on a section of the dialog will seek the video to the start of that dialog.
+We developed the navigation features of our interface based
+on foreign language learners’ video viewing patterns. In
+interviews conducted with language learners who enjoyed
+watching subtitled foreign-language videos, they reported
+that they often reverse-seeked to the beginning of the current
+line of dialog to review the portion that had just been said.
+Therefore, we aimed to make this process as seamless as possible.
+In our interface, clicking on a section of the dialog will
+seek the video to the start of that dialog.
 
-Another activity that language learners reported doing was attempting to locate the line of dialog where a particular word or phrase had been said. Therefore, we enable easy seeking through the video based on dialog. The transcript is prominently shown, and can be navigated by pressing the up/down keys, or scrolling. It is also possible to search the video for occurrences of particular words.
+Another activity that language learners reported doing was attempting to locate the line of dialog where a particular word or phrase had been said. Therefore, we enable easy seeking through the video based on dialog. The transcript is prominently shown, and can be navigated by pressing the up/down keys, scrolling, or clicking on lines of dialog, as shown in Figure~\ref{fig:figure25}. Users can also search the video for occurrences of particular words in the dialog.
 
 \subsection{Vocabulary Learning Features}
 
-The vocabulary learning features of our interface are aimed towards the use case where the viewer encounters an unknown word, and would like to look up its definition. The interface allows a user to hover over any word, and it will show the definition.
+The vocabulary learning features of our interface are aimed towards the use case where the viewer encounters an unknown word, and would like to look up its definition. The interface allows the viewer to hover over any word in
+the dialog to show its definition.
 
 In addition, for languages such as Japanese and Chinese, which have non-phonetic writing systems, the interface also shows the phonetic representations for learners. For Chinese, it shows \emph{pinyin}, the standard romanization system for Chinese. For Japanese, it shows \emph{hiragana}, the Japanese phonetic writing system.
 
