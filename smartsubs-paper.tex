@@ -103,11 +103,11 @@ They provide features such as vocabulary definitions on hover, and
 dialog-based video navigation. Our user study shows
 that students studying Chinese learn more than twice as much
 vocabulary with Smart Subtitles than with dual
-Chinese-English subtitles. Learners' self-assesed enjoyment
-of the viewing experience, as well as their comprehension
-of the video, both self-assessed and
-as indicated by independent evaluations of their summaries,
-remain unchanged.
+Chinese-English subtitles. Learners enjoyed viewing videos
+with Smart Subtitles just as much as with dual subtitles.
+Learners' video comprehension levels were the same between tools,
+both self-assessed and
+as indicated by independent evaluations of their summaries.
 \end{abstract}
 
 \keywords{
@@ -119,13 +119,13 @@ remain unchanged.
 \section{Introduction}
 
 Students studying foreign languages often wish to enjoy authentic foreign-language video content. For example, many students cite a desire to be able to watch anime in its original form as their motivation for starting to study Japanese \cite{anime}. However, the standard presentations of videos are not accommodating towards language learners. For example, if a learner were watching anime, and did not recognize a word in the dialog, the learner would normally have
-to listen carefully to the word, and look it up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, the learner could simply watch a version that is dubbed, or a version with subtitles in their native language to enjoy the content. However, they might not learn the foreign language effectively this way.
+to listen carefully to the word, pause the video, and look the word up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, the learner could simply watch a version that is dubbed, or a version with subtitles in their native language to enjoy the content. However, they might not learn the foreign language effectively this way.
 
 We aim to build a foreign-language video viewing tool
 that maximizes vocabulary learning, while ensuring that the learner
 fully understands the video and enjoys watching it.
 
-\section{Background}
+\section{Related Work}
 
 Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure~\ref{fig:figure1} and are described in more detail below.
 
@@ -144,10 +144,10 @@ The mixed results that studies have found on the effects of subtitles on languag
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\columnwidth]{subtitle-types-2column}
-\caption{Ways that a Chinese video can be presented
+\caption{Mockups showing ways that a Chinese video can be presented
 to English-speaking viewers and language learners.
-Note that GliFlix does not actually support Chinese; these are mockups.
-The mockup for Smart Subtitles does not show some features, such
+Note that GliFlix does not actually support Chinese, and
+the mockup for Smart Subtitles does not show some features, such
 as dialog-based navigation.}
 \label{fig:figure1}
 \end{figure}
@@ -173,8 +173,7 @@ people's eyes to it, causing them to read it. Therefore, this should attract att
 language text. The presentation of the foreign language in written form may also be helpful with
 certain learners whose reading comprehension ability is stronger than their listening
 comprehension. That said, because the foreign language is presented only in written form, the
-learner may not end up learning the pronunciation, particularly with a language with a non-
-phonetic writing system, such as Chinese.
+learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
 
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
 However, in addition to the subtitle displaying the foreign-language, they also display the
@@ -272,7 +271,7 @@ The vocabulary learning features of our interface are aimed towards the use case
 
 In addition, for languages such as Japanese and Chinese, which have non-phonetic writing systems, the interface also shows the phonetic representations for learners. For Chinese, it shows \emph{pinyin}, the standard romanization system for Chinese. For Japanese, it shows \emph{hiragana}, the Japanese phonetic writing system.
 
-Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, we include an button that shows learners a translation for the currently displayed line of dialog when pressed.
+Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, we include a button that shows learners a translation for the currently displayed line of dialog when pressed.
 
 \section{Implementation}
 
@@ -340,13 +339,10 @@ Our hard-subtitle extraction algorithm takes advantage of the properties of subt
 
 \begin{enumerate}[noitemsep]
 \item Subtitles in the same video are of the same color, with some variance due to compression artifacts.
-\item Subtitles in the same video appear in the same vertical region.
+\item Subtitles in the same video are consistently shown in the same vertical region of the screen.
 \item Subtitles remain static on-screen, so they do not move around and are not animated.
 \item Characters in the subtitle have many corners. This is a Chinese-specific assumption, owing to the graphical complexity of Chinese characters.
 \end{enumerate}
-
-\textbf{QUESTION do we actually want to describe the algorithm in this
-much detail? It's pretty complex and is probably of little interest to CHI audiences...}
 
 Our hard-subtitle extraction algorithm first attempts to determine the color
 of the subtitle. To do so, it first runs the Harris corner detector \cite{harris1988combined}
@@ -375,9 +371,9 @@ Next, we extract the text from the reference images generated for each line of d
 
 The accuracy of our hard-subtitle extraction algorithm depends on the resolution of the video and
 the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial - using Tesseract instead of OneNote more than tripled the character error rate,
-as Tesseract is much less resilient to extraneous pixels in the input.
+as Tesseract is less resilient to extraneous pixels in the input.
 
-Overall, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized roughly 80\% of the dialog lines completely correctly. Overall, roughly 95\% of all characters were correctly recognized. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining dialog-level errors were due to characters that were misrecognized by OCR.
+As an illustrative example, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized roughly 80\% of the dialog lines completely correctly. Overall, roughly 95\% of all characters were correctly recognized. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining dialog-level errors were due to characters that were misrecognized by OCR.
 
 %Unfortunately, because a single character-level error will often make the entire line of dialog incomprehensible to learners, in the Smart Subtitles application the dialog-level error rate is the metric of interest. The subtitles output by our algorithm thus require manual corrections before they can be presented to learners. However, the presence and timings of 98\% of dialog lines were correctly recognized, so the information output by our algorithm helps with specifying subtitle timings.
 
@@ -430,20 +426,20 @@ Alternatively, if we only have a transcript available, and not a subtitle in the
 
 \section{User Study}
 
-Our user evaluations for Smart Subtitles was a within-subjects user study that compared vocabulary learning with this system, to the amount of vocabulary learning when using parallel English-Chinese subtitles. Specifically, we wished to compare the effectiveness of our system in teaching vocabulary to learners, compared to dual subtitles, which are believed to be among the best ways to learn vocabulary while viewing videos \cite{raine2012incidental}.
+Our user study for Smart Subtitles was a within-subjects study that compared vocabulary learning with this system, to the amount of vocabulary learning when using dual English-Chinese subtitles. Specifically, we wished to compare the effectiveness of our system in teaching vocabulary to learners, compared to dual subtitles, which are believed to be among the best ways to learn vocabulary while viewing videos \cite{raine2012incidental}.
 
 \subsection{Materials}
 
-The video we showed was the first 5 minutes, and the next 5 minutes, in the first episode of the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). This particular video was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVTT-format subtitles.
+We used a pair of 5-minute video clips, both taken from the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). One clip was the first 5 minutes of the first episode of the drama, while the second clip was the next 5 minutes. These video clips was chosen because the vocabulary usage, grammar, and pronunciations were standard, modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, was everyday, ordinary settings, so while there was still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVTT-format subtitles.
 
 \subsection{Participants}
 
-Our study participants were 8 students who were enrolled in a third-semester Chinese class. Our study was conducted at the end of the semester, so participants had approximately 1.5 years of Chinese learning experience. 4 of our participants were male, and 4 were female.
+Our study participants were 8 undergraduate students who were enrolled in a third-semester Chinese class. Our study was conducted at the end of the semester, so participants had approximately 3 full semesters of Chinese learning experience. 4 of our participants were male, and 4 were female.
 Participants were paid \$20.
 
 \subsection{Research Questions}
 
-The questions our study seeked to answer were:
+The questions our study sought to answer were:
 
 \begin{enumerate}[noitemsep]
 \item Will users learn more vocabulary using Smart Subtitles than with dual subtitles?
@@ -503,7 +499,7 @@ For both types of questions, we additionally asked the participant to self-repor
 
 After completing the vocabulary quiz, we asked them to write a summary of the clip they had
 just seen, describing as many details as they could recall. Then, they completed
-a questionnaire where they rated on a 7-point likehardt scale, the following questions:
+a questionnaire where they rated the following questions on a 7-point Likert scale:
 
 \begin{itemize}[noitemsep]
 \item How easy did you find it to learn new words while watching this video?
@@ -515,7 +511,8 @@ Finally, we asked for free-form feedback about the user's impressions of the too
 
 \section{Results}
 
-From our study, we found that:
+We made the following conclusions from our study, which will be explained in
+further detail in the following sections:
 
 \begin{enumerate}[noitemsep]
 \item Users learned over twice as much vocabulary using Smart Subtitles than with dual subtitles.
@@ -546,7 +543,10 @@ We attribute this to certain participants focusing more attention on the pronunc
 
 \subsection{Viewing Times}
 
-As shown in Figure~\ref{fig:figure7}, viewing times did not differ significantly between either of the two 5-minute clips, or between the tools. Viewing times were between 10-12 minutes for each clip, in either condition. Interestingly, the average viewing times with Smart Subtitles was actually slightly less than with dual subtitles, which is likely due to the dialog-based navigation features. Indeed, during the user study, we observed that users of Smart Subtitles would often review the vocabulary in the preceding few lines of the video clip by utilizing the interactive transcript, whereas users of Dual Subtitles would often over-seek backwards when reviewing, and would lose some time as they waited for the subtitle to appear.
+As shown in Figure~\ref{fig:figure7}, viewing times did not differ significantly between either of the two 5-minute clips, or between the tools. Viewing times were between 10-12 minutes for each clip, in either condition.
+%Interestingly, the average viewing times with Smart Subtitles was actually %slightly less than with dual subtitles, which is likely due to the dialog-based %navigation features.
+During the user study, we observed that users of Smart Subtitles would often review the vocabulary in the preceding few lines of the video clip by utilizing the interactive transcript, whereas users of Dual Subtitles would often over-seek backwards when reviewing, and would lose some time as they waited for the subtitle to appear.
+Thus, the dialog-based navigation feature appears to have saved enough time in the Smart Subtitles condition to balance out any additional time spent using the interactive vocabulary learning features.
 
 \begin{figure}[!h]
 \centering
@@ -604,7 +604,7 @@ Average rating results from the remaining three raters are shown in Figure~\ref{
 There was no significant difference in the quality of summaries written
 by the learners between the Smart Subtitles and Dual Subtitles conditions,
 according to any of the 4 quality metrics. The Krippendorff's alpha,
-which measures inter-rater agreement \cite{krippendorff}, across the raters was 0.7.
+which measures agreement across raters \cite{krippendorff}, was 0.7.
 
 \subsection{Free-form Feedback}
 
@@ -624,19 +624,19 @@ Viewing strategies with Smart Subtitles varied across
 participants, though all made at least some use of both
 the word-level and dialog-line translation functionality.
 Word-level translations were heavily used. On average,
-users hovered over words in 3/4 of the lines of dialog
-(standard deviation 0.22).
+users hovered over words in 75\% of the lines of dialog
+($\sigma = 22\%$).
 The words hovered over the longest tended to be less
 common words, indicating that participants were using
 the feature for defining unfamiliar words, as intended.
 Participants tended to use dialog-line translations
 sparingly. On average they clicked on the translate
-button on only 1/3 of the lines of dialog
-(standard deviation 0.15).
+button on only $28\%$ of the lines of dialog
+($\sigma = 15\%$).
 Combined with our observation that there was no decline in
 comprehension levels with Smart Subtitles, this suggests
 that word-level translations are often sufficient for
-learners to understand dialogs.
+intermediate-level learners to understand dialogs.
 
 \section{Conclusion and Future Work}
 
