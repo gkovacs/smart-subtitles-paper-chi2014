@@ -176,7 +176,7 @@ comprehension. That said, because the foreign language is presented only in writ
 learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
 
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
-However, in addition to a subtitle displaying the viewer's native language, they also display a caption in the original language as well. This way, a learner can both read the written representation and hear the spoken representation of the dialog in the foreign language, and will still have a translation
+However, in addition to displaying a subtitle in the viewer's native language, they also display a caption in the original language. This way, a learner can both read and hear the dialog in the foreign language, and still have a translation
 available. Thus, of these options, dual subtitles provide the most information to the learner.
 Indeed, dual subtitles have been found to be at least as effective for vocabulary acquisition as
 either subtitles or captions alone \cite{raine2012incidental}.
@@ -323,7 +323,7 @@ and use it to compute the timing information for the transcript.
 
 \subsubsection{Extracting Subtitles from Overlayed-Bitmap Formats}
 
-Overlayed-bitmap subtitles are pre-rendered versions of the text which are overlayed onto the video when playing. They consist of an index mapping time-ranges to the bitmap image which should be overlayed on top of the video at that time. This is the standard subtitle format used in DVDs, where is it called VobSub.
+Overlayed-bitmap subtitles are pre-rendered versions of the text which are overlayed onto the video when playing. They consist of an index mapping time-ranges to the bitmap image which should be overlayed on top of the video at that time. This is the standard subtitle format used in DVDs, where it is called VobSub.
 
 Because we cannot read text directly from the overlayed-bitmap images in DVDs, Smart Subtitles uses Optical Character Recognition (OCR) to extract the text out of each image. Then, it merges this with information about time ranges to convert them to the WebVTT subtitle format. Our implementation can use either the Microsoft OneNote \cite{onenote} OCR engine, or the free Tesseract \cite{tesseract} OCR engine.
 
@@ -491,7 +491,7 @@ of a word from the video, providing the context it had appeared in.}
 \label{fig:figure5}
 \end{figure}
 
-For both types of questions, we additionally asked the participant to self-report whether they had known the meaning of the word before watching the video, so that we could determine whether it was a newly learned word, or if they had previously learned it from some external source. This self-reporting mechanism is commonly used in vocabulary-learning evaluations for foreign-language learning \cite{wesche1996assessing}.
+For both types of questions, we additionally asked the participant to self-report whether they had known the meaning of the word before watching the video, so that we could determine whether it was a newly learned word or one they had previously learned from some external source. This self-reporting mechanism is commonly used in vocabulary-learning evaluations for foreign-language learning \cite{wesche1996assessing}.
 
 \subsubsection{Questionnaire}
 
@@ -655,7 +655,7 @@ Given that users only viewed dialog-line translations for a
 third of the dialog lines when using Smart Subtitles,
 yet matched their comprehension levels with dual Chinese-English subtitles,
 this suggests that word-level translations are often sufficient for
-comprehension.
+intermediate-level learners to understand the dialog.
 
 Unlike traditional subtitles, Smart Subtitles currently expect users to actively interact with them. However, we could potentially allow more
 passive usage by using statistical modelling to predict which words the viewer
@@ -663,7 +663,7 @@ won’t know and automatically showing their definitions.
 
 Much work can still be done in the area of incorporating multimedia into learning. Our current Smart Subtitles system focuses on written vocabulary learning while watching of dramas and movies.
 However, we believe that augmenting video can also benefit other aspects of language learning. For example, we could
-incorporates visualizations for helping learn grammar and sentence patterns,
+incorporate visualizations for helping learn grammar and sentence patterns,
 and speech synthesis for helping learn pronunciation. We could also 
 pursue further gains in vocabulary learning and comprehension,
 by dynamically altering the video playback rate, or by adding
