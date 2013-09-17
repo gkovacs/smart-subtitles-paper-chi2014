@@ -176,12 +176,10 @@ comprehension. That said, because the foreign language is presented only in writ
 learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
 
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
-However, in addition to the subtitle displaying the foreign-language, they also display the
-viewer's native language as well. In this way, a learner can both read the written representation,
-as well as hear the spoken representation of the dialog, and will still have the translation
+However, in addition to a subtitle displaying the viewer's native language, they also display a caption in the original language as well. This way, a learner can both read the written representation and hear the spoken representation of the dialog in the foreign language, and will still have a translation
 available. Thus, of these options, dual subtitles provide the most information to the learner.
 Indeed, dual subtitles have been found to be at least as effective for vocabulary acquisition as
-either captions or subtitles alone \cite{raine2012incidental}.
+either subtitles or captions alone \cite{raine2012incidental}.
 
 \emph{GliFlix} \cite{gliflix} is a variant on the conventional, native-language subtitle, which adds translations to the foreign language for the most common words that
 appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is (\emph{est}) a line of dialog", showing that \emph{is} in French is \emph{est}. In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
@@ -190,7 +188,7 @@ other language-learning tasks such as learning pronunciation and grammar.
 
 \section{Smart Subtitles Interface}
 
-We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation operations, as well as vocabulary-learning features, which are shown in Figure~\ref{fig:figure2}. Smart Subtitles can be automatically generated for any video, provided that a caption is available.
+We developed a video viewing tool, Smart Subtitles, which displays subtitles to language learners to enhance the learning experience. It does so by providing support for dialog-level navigation features and vocabulary-learning features, which are shown in Figure~\ref{fig:figure2}. Smart Subtitles can be automatically generated for any video, provided that a caption is available.
 
 \begin{figure}[!h]
 \centering
@@ -279,7 +277,7 @@ Smart Subtitles are automatically generated from
 captions with the assistance of dictionaries and 
 machine translation. The Smart Subtitles system
 is implemented as 2 main parts:
-a system to extract subtitles and captions from videos, as well as an interactive interface to display them to learners.
+a system to extract subtitles and captions from videos, and an interactive interface to display them to learners.
 
 \subsection{Extracting Subtitles from Videos}
 
@@ -309,7 +307,7 @@ by default, but it can also extract subtitles from various other sources.}
 For many videos, a transcript is available, but the timing information
 stating when each line of dialog was said is unavailable.
 Examples include transcripts of lectures on sites such as
-OpenCourseWare, as well as lyrics for music videos.
+OpenCourseWare and lyrics for music videos.
 
 It is possible to add timing information to videos automatically based on speech recognition techniques, which is called \emph{forced alignment} \cite{sailalign}.
 However, we found that existing software for doing forced alignment
@@ -397,7 +395,7 @@ Now that we have determined what the words in each line of dialog are, we need
 to obtain word definitions and romanizations. These will be displayed when
 the user hovers over words in the dialog.
 
-For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT \cite{mdbg}. This dictionary provides both a list of definitions, as well as the pinyin for each word.
+For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT \cite{mdbg}. This dictionary provides a list of definitions and the pinyin for each word.
 
 Obtaining definitions for a word is more difficult for languages that have extensive conjugation, such as Japanese. In particular, bilingual dictionaries, such as WWWJDIC \cite{wwwjdic}, the dictionary we use for Japanese, will only include information about the infinitive, unconjugated forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning ``ate" is \begin{CJK}{UTF8}{min}食べた\end{CJK} [tabeta], though this word does not appear in the dictionary. Only the infinitive form ``eat" \begin{CJK}{UTF8}{min}食べる\end{CJK} [taberu] is present. In order to provide a definition, we need to perform \emph{stemming}, which is the process of deriving the infinitive form from a conjugated word. Rather than implementing our own stemming algorithm for Japanese, we adapted the one that is implemented in the Rikaikun Chrome extension \cite{rikaikun}.
 
@@ -475,7 +473,7 @@ needed, pausing and rewinding as they desired.
 
 \subsubsection{Vocabulary Quiz}
 
-After a participant finished watching a clip, we evaluated vocabulary learning via an 18-question free-response vocabulary quiz, with two types of questions. One type of question, shown in Figure~\ref{fig:figure4}, provided a word that had appeared in the video clip, and asked participants to provide the definition for it. The other type of question, shown in Figure~\ref{fig:figure5}, provided a word that had appeared in the video clip, as well as the context in which it had appeared in, and asked participants to provide the definition for it.
+After a participant finished watching a clip, we evaluated vocabulary learning via an 18-question free-response vocabulary quiz, with two types of questions. One type of question, shown in Figure~\ref{fig:figure4}, provided a word that had appeared in the video clip and asked participants to provide an English definition for the word. The other type of question, shown in Figure~\ref{fig:figure5}, provided a word that had appeared in the video clip and the context it had been used in, and asked participants to provide an English definition for the word.
 
 \begin{figure}[!h]
 \centering
@@ -528,7 +526,7 @@ between the tools.
 
 Since the vocabulary quiz answers were done in free-response format, a third-party native Chinese speaker was asked to mark the learners' quiz answers as being either correct or incorrect. The grader was blind as to which condition or which learner the answer was coming from.
 
-As shown in Figure~\ref{fig:figure6}, both the average number of questions which were correctly answered, as well as the number of new words learned, was greater with Smart Subtitles than with dual subtitles. We measured the number of new words learned as the number of correctly answered questions, excluding those for which they marked that they had previously known the word. There was no significant difference in the number of words known beforehand in each condition. A t-test shows that there were significantly more questions correctly answered (t=3.49, df=7, p $<$ 0.05) and new words learned (t=5, df=7, p $<$ 0.005) when using Smart Subtitles.
+As shown in Figure~\ref{fig:figure6}, both the average number of questions which were correctly answered and the number of new words learned was greater with Smart Subtitles than with dual subtitles. We measured the number of new words learned as the number of correctly answered questions, excluding those for which they marked that they had previously known the word. There was no significant difference in the number of words known beforehand in each condition. A t-test shows that there were significantly more questions correctly answered (t=3.49, df=7, p $<$ 0.05) and new words learned (t=5, df=7, p $<$ 0.005) when using Smart Subtitles.
 
 \begin{figure}[!h]
 \centering
@@ -612,7 +610,7 @@ We asked users to provide feedback about the watching experience in general, and
 	 	 	
 \emph{Yes! This was much better than the other tool. It was very useful being able to skip to specific words and sentences, preview the sentences coming up, look up definitions of specific words (with ranked meanings – one meaning often isn't enough), have pinyin, etc. I also really liked how the English translation isn't automatically there – I liked trying to guess the meaning based on what I know and looking up some vocab, and then checking it against the actual English translation. With normal subtitling, it's hard to avoid just looking at the English subtitles, even if I can understand it in the foreign language. This also helped when the summation of specific words did not necessarily add up to the actual meaning}
 
-The tone coloring feature in particular was not received as well. The only comment on tone coloring was by one participant who described it as distracting. This would suggest that we may wish to simply remove this feature, or make the tones more salient using another means, such tone numbers, which are more visually apparent than tone marks:
+The tone coloring feature in particular was not received as positively as the other features. The only comment on tone coloring was by one participant who described it as distracting. This would suggest that we may wish to simply remove this feature, or make the tones more salient using another means, such tone numbers, which are more visually apparent than tone marks:
 	 	 	
 \emph{The tone coloring was interesting, but I actually found it a bit distracting. It seemed like I had a lot of colors going on when I didn't really need the tones color-coordinated. However, I think it's useful to have the tones communicated somehow.}
 
