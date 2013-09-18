@@ -157,10 +157,10 @@ Smart Subtitles includes features to help
 learners learn vocabulary and navigate the video.
 It prominently displays a transcript of the foreign-language dialog, to
 focus learners' attention on the foreign language.
-Learners can view definitions for words in the video dialog by hovering over them.
+Learners can view definitions for words in the video by hovering over them.
 Learners can review the current and previous lines of dialog by clicking on them to replay the video.
 If word-level translations are not enough for learners to understand the
-current line of dialog, they can click a button to show an English translation.
+current line of dialog, they can click a button to show a full translation.
 
 Smart Subtitles can be automatically generated from a number
 of video sources, such as DVDs. It also includes a novel algorithm for
@@ -169,7 +169,7 @@ part of the video stream. The Smart Subtitles system currently supports videos i
 Japanese, French, German, and Spanish, and can be extended to other languages
 for which bilingual dictionaries are availabe.
 
-We ran a within-subjects user study with 8 intermediate Chinese learners to compare the effectiveness of Smart Subtitles in teaching vocabulary against dual subtitles. After viewing a 5-minute Chinese video clip with one of the tools, participants took a vocabulary quiz to test their vocabulary learning,
+We ran a within-subjects user study with 8 intermediate Chinese learners to compare the effectiveness of Smart Subtitles in teaching vocabulary against dual subtitles. After viewing a 5-minute video with one of the tools, participants took a vocabulary quiz to test vocabulary learning,
 wrote a summary of the video clip,
 and filled out a questionnaire. They then repeated this procedure on another clip, with the other tool.
 
@@ -226,15 +226,16 @@ To conserve space, this diagram only shows the vocabulary-learning features of S
 
 \subsection{Presenting Videos to Foreign Viewers}
 
-One approach used to adapt videos for viewers who do not understand the original language is \emph{dubbing}. Here, the original foreign-language voice track is removed and is replaced with a voice track in the viewer's native language.
+One approach used to adapt videos for viewers who do not understand the original language is \emph{dubbing}. Here, the original foreign-language voice track is replaced with a voice track in the viewer's native language.
 Because the foreign language is no longer present in the dubbed version, dubbed videos are ineffective for foreign language learning \cite{dubbing}.
 
 Another approach is to provide \emph{subtitles} with the video. Here, the foreign-language audio is retained as-is, and the native-language translation is provided in textual format, generally as a line presented at the bottom of the screen.
-Thus, the learner will hear the foreign language, but will not see its written form. Therefore, they must pay close attention to the audio
-to learn the foreign language.
+Thus, the learner will hear the foreign language, but will not see its written form.
+%Therefore, they must pay close attention to the audio
+%to learn the foreign language.
 Subtitles have had mixed reactions in the context of language learning. Some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them \cite{danan2004captioning}.
 That said, other studies have found them to provide little benefit to language learners in learning vocabulary \cite{danan1992reversed}. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation \cite{mitterer2009foreign}.
-The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as the experience level of the learners \cite{bianchi2008captions}.
+The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as learners' experience levels \cite{bianchi2008captions}.
 
 \subsection{Presenting Videos to Language Learners}
 
@@ -261,6 +262,19 @@ certain learners whose reading comprehension ability is stronger than their list
 comprehension. That said, because the foreign language is presented only in written form, the
 learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
 
+\begin{figure*}[t!]
+\centering
+\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate}
+\caption{Smart Subtitles has several interactive features. It allows users to easily navigate the video and
+review lines of dialog, either by clicking onto the line of dialog to replay,
+scrolling the mouse wheel,
+or pressing arrow keys on the keyboard. Users can hover over words
+in the dialog to show their definitions, as shown on the left.
+If word-level translations are not sufficient for users to understand the dialog, they can also press a button to show a translation for the current
+line of dialog, as shown on the right.}
+\label{fig:figure25}
+\end{figure*}
+
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
 Dual subtitles simultaneously display a subtitle in the viewer's native language, and a transcript in the original language. This way, a learner can both read and hear the dialog in the foreign language, and still have a translation
 available. Thus, of these options, dual subtitles provide the most information to the learner.
@@ -276,18 +290,7 @@ appear in the dialog. For example, for a French dialog, instead of ``This is a l
 subtitles, though not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that because it shows only the most common vocabulary words in a dialog, learners may not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, this approach is likely less beneficial than dual subtitles for
 other language-learning tasks such as learning pronunciation and grammar.
 
-\begin{figure*}[t!]
-\centering
-\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate}
-\caption{Smart Subtitles has several interactive features. It allows users to easily navigate the video and
-review lines of dialog, either by clicking onto the line of dialog to replay,
-scrolling the mouse wheel,
-or pressing arrow keys on the keyboard. Users can hover over words
-in the dialog to show their definitions, as shown on the left.
-If word-level translations are not sufficient for users to understand the dialog, they can also press a button to show a translation for the current
-line of dialog, as shown on the right.}
-\label{fig:figure25}
-\end{figure*}
+\pagebreak
 
 \section{Smart Subtitles Interface}
 
@@ -302,8 +305,8 @@ generating annotations.
 We developed the vocabulary learning features of our interface based
 on interviews with language learners who enjoyed watching subtitled videos. Learners stated they often encountered
 unknown words in the video, and wanted to know their definitions.
-Our interface allows the user to hover over any word in
-the dialog to show its definition, as shown in Figure~\ref{fig:figure25}.
+Our interface allows the user to hover over words in
+the dialog to show their definitions, as shown in Figure~\ref{fig:figure25}.
 
 Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, Smart Subtitles includes a button that shows learners a translation for the currently displayed line of dialog when pressed, as shown in Figure~\ref{fig:figure25}.
 
@@ -393,7 +396,7 @@ Because we cannot read text directly from the overlayed-bitmap images in DVDs, S
 
 Many videos come with \emph{hard subtitles}, where the subtitle is baked into the video stream. Hard subtitles have the advantage that they can be displayed on any video player. However, hard subtitles have the disadvantage that they are non-removable. Additionally, hard subtitles are difficult to extract machine-readable text from, because the pixels representing the subtitle must first be isolated from the rest of the video, before we can apply OCR to obtain the text. Existing tools that perform this task, such as SubRip, are time-consuming, as they require the user to specify the color and location of each subtitle line in the video \cite{subrip}.
 
-That said, hard-subtitled videos are ubiquitous, particularly online. Chinese-language dramas on popular video-streaming sites such as Youku are frequently hard-subtitled in Chinese. Thus, to allow Smart Subtitles to be used with hard-subtitled videos, we devised an algorithm which can identify Chinese subtitles in hard-subtitled videos and extract them out.
+That said, hard-subtitled videos are ubiquitous, particularly online. Chinese-language dramas on popular video-streaming sites such as Youku are frequently hard-subtitled in Chinese. Thus, to allow Smart Subtitles to be used with hard-subtitled videos, we devised an algorithm which can identify and extract Chinese subtitles from hard-subtitled videos.
 
 Our hard-subtitle extraction algorithm takes advantage of the following properties of subtitles. We have generally found these properties to hold true in the Chinese-language hard-subbed material we have observed:
 
@@ -445,7 +448,7 @@ delimited by spaces and punctuation. For European languages supported by
 Smart Subtitles (English, French, Spanish, and German), the Smart Subtitles system lists
 vocabulary words in each line of dialog using the
 tokenizer included in the Natural
-Language Toolkit (NLTK) \cite{nltk}.
+Language Toolkit \cite{nltk}.
 
 A particular issue which occurs with Chinese and Japanese is that the boundaries between
 words are not indicated in writing. To determine what words are present
@@ -459,7 +462,7 @@ the user hovers over words in the dialog.
 
 For languages such as Chinese that lack conjugation, the process of obtaining definitions and romanizations for words is simple: we look them up in a bilingual dictionary. The dictionary we use for Chinese is CC-CEDICT \cite{mdbg}. This dictionary provides a list of definitions and the pinyin for each word.
 
-Obtaining definitions for a word is more difficult for languages that have extensive conjugation, such as Japanese. Bilingual dictionaries such as WWWJDIC \cite{wwwjdic}, the dictionary we use for Japanese, will only include information about the infinitive, unconjugated forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning ``ate" is \begin{CJK}{UTF8}{min}食べた\end{CJK} [tabeta], though this word does not appear in the dictionary. Only the infinitive form ``eat" \begin{CJK}{UTF8}{min}食べる\end{CJK} [taberu] is present. In order to provide a definition, we need to perform \emph{stemming}, which is the process of deriving the infinitive form from a conjugated word. We use the stemming algorithm that is implemented in the Rikaikun Chrome extension \cite{rikaikun} to perform stemming for Japanese.
+Obtaining definitions for a word is more difficult for languages that have extensive conjugation, such as Japanese. Bilingual dictionaries such as WWWJDIC \cite{wwwjdic}, the dictionary we use for Japanese, will only include information about the infinitive, unconjugated forms of verbs and adjectives. However, the words which result from segmentation will be fully conjugated, as opposed to being in the infinitive form. For example, the Japanese word meaning ``ate" is \begin{CJK}{UTF8}{min}食べた\end{CJK} [tabeta], though this word does not appear in the dictionary. Only the infinitive form ``eat" \begin{CJK}{UTF8}{min}食べる\end{CJK} [taberu] is present. In order to provide a definition, we need to perform \emph{stemming}, which derives the infinitive form from a conjugated word. We use the stemming algorithm implemented in the Rikaikun Chrome extension \cite{rikaikun} to perform stemming for Japanese.
 
 For the other supported languages (French, German, and Spanish), instead of implementing additional stemming algorithms for each language, we instead observed that Wiktionary for these languages tends to already list the conjugated forms of words with a reference back to the original \cite{wiktionary}. Therefore, we generated dictionaries and stemming tables by scraping this information from Wiktionary.
 
@@ -490,7 +493,12 @@ We evaluate Smart Subtitles with a within-subject user study that compares the a
 
 \subsection{Materials}
 
-We used a pair of 5-minute video clips, both taken from the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). One clip is the first 5 minutes of the first episode of the drama, while the second clip is the next 5 minutes. We chose these video clips because the vocabulary usage, grammar, and pronunciations are standard modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. Additionally, the content of these video clips, consisting of conversations in classroom and household settings, is everyday, ordinary settings, so while there is still much unfamiliar vocabulary in both clips, cultural unfamiliarity with the video content would not be a barrier to comprehension. The Chinese and English subtitles were extracted from a DVD and OCR-ed to produce WebVTT-format subtitles.
+We used a pair of 5-minute video clips, both taken from the drama \begin{CJK}{UTF8}{min}我是老師\end{CJK} (I am a Teacher). One clip is the first 5 minutes of the first episode of the drama, while the second clip is the next 5 minutes. We chose these video clips because the vocabulary usage, grammar, and pronunciations are standard modern spoken Chinese, as opposed to historical videos, which are filled with archaic vocabulary and expressions from literary Chinese. These video clips
+%take place in everyday settings,
+%with the content
+consist of everyday conversations in classrooms and homes,
+so while there is unfamiliar vocabulary in both clips, cultural unfamiliarity is not a barrier to comprehension.
+The Chinese and English subtitles were extracted from a DVD. %and OCR-ed to produce WebVTT-format subtitles.
 
 \subsection{Participants}
 
@@ -672,9 +680,9 @@ We asked users to provide feedback about the watching experience in general, and
 	 	 	
 \emph{Yes! This was much better than the other tool. It was very useful being able to skip to specific words and sentences, preview the sentences coming up, look up definitions of specific words (with ranked meanings – one meaning often isn't enough), have pinyin, etc. I also really liked how the English translation isn't automatically there – I liked trying to guess the meaning based on what I know and looking up some vocab, and then checking it against the actual English translation. With normal subtitling, it's hard to avoid just looking at the English subtitles, even if I can understand it in the foreign language. This also helped when the summation of specific words did not necessarily add up to the actual meaning}
 
-The tone coloring feature in particular was not received as positively as the other features. The only comment on tone coloring was by one participant who described it as distracting. This would suggest that we may wish to simply remove this feature, or make the tones more salient using another means, such tone numbers, which are more visually apparent than tone marks:
+The tone coloring feature in particular was not received as positively as the other features. The only comment on tone coloring was by one participant who described it as distracting. This would suggest that we may wish to simply remove this feature, or make the tones more salient using another means, such tone numbers, which are more visually apparent than tone marks.
 	 	 	
-\emph{The tone coloring was interesting, but I actually found it a bit distracting. It seemed like I had a lot of colors going on when I didn't really need the tones color-coordinated. However, I think it's useful to have the tones communicated somehow.}
+%\emph{The tone coloring was interesting, but I actually found it a bit distracting. It seemed like I had a lot of colors going on when I didn't really need the tones color-coordinated. However, I think it's useful to have the tones communicated somehow.}
 
 \subsection{Feature Usage during User Studies}
 
