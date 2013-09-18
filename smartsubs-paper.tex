@@ -134,12 +134,15 @@ Students studying foreign languages often wish to enjoy authentic foreign-langua
 provide good support for language learners. For example, if a learner were watching anime, and did not recognize a word in the dialog, the learner would normally have
 to listen carefully to the word, pause the video, and look the word up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, learners could simply watch a version that is dubbed, or a version with subtitles in their native language to enjoy the content. However, they might not learn the foreign language effectively this way.
 
-There are many other existing ways that videos can be presented to language
-learners, such as reverse subtitles, dual subtitles, and GliFlix.
-Dual subtitles, which simultaneously display subtitles in both the viewer's native
-language as well as the language of the video,
-are one of most effective
-ways for language learners to learn vocabulary from videos.
+There are other ways to show language learners videos to help them learn,
+such as dual subtitles,
+%Language educators have studied other ways to present videos to language learners.
+%learners, such as reverse subtitles, dual subtitles, and GliFlix.
+%Dual subtitles,
+which simultaneously display subtitles in both the viewer's native
+language as well as the language of the video.
+%This is considered one of most effective
+%ways to learn vocabulary from videos.
 However, we believe we can do even better at teaching vocabulary
 than dual subtitles
 by introducing interactive features into the video player
@@ -159,18 +162,46 @@ Learners can review the current and previous lines of dialog by clicking on them
 If word-level translations are not enough for learners to understand the
 current line of dialog, they can click a button to show an English translation.
 
+Smart Subtitles can be automatically generated from a number
+of video sources, such as DVDs. It also includes a novel algorithm for
+extracting subtitles from hard-subtitled videos, where the subtitle is
+part of the video stream. The Smart Subtitles system currently supports videos in Chinese,
+Japanese, French, German, and Spanish, and can be extended to other languages
+for which bilingual dictionaries are availabe.
+
 We ran a within-subjects user study with 8 intermediate Chinese learners to compare the effectiveness of Smart Subtitles in teaching vocabulary against dual subtitles. After viewing a 5-minute Chinese video clip with one of the tools, participants took a vocabulary quiz to test their vocabulary learning,
 wrote a summary of the video clip,
-and filled out a questionnaire. They then repeated the task on another clip, with the other tool.
+and filled out a questionnaire. They then repeated this procedure on another clip, with the other tool.
+
 We found that learners learned twice over as many new vocabulary
 words when they viewed clips using Smart Subtitles.
 The amount of time they spent viewing the video was the same in both conditions.
-They report they enjoyed
+Users enjoyed
 using Smart Subtitles to view videos, and found it
 significantly easier to learn vocabulary with the Smart Subtitles interface.
 Their comprehension of the videos was equally high in both conditions,
 as indicated by both self-assessments as well as expert ratings
 of the quality of their video summaries.
+Users used the vocabulary-hover feature extensively,
+and viewed dialog-level translations for only a third of the lines,
+suggesting that word-level translations
+are often sufficient for intermediate-level learners to comprehend the video.
+%, using it on
+%75\% of lines of dialog. Users viewed dialog-level translations for only
+%28\% of the lines of dialog, suggesting that word-level translations
+%are often sufficient for intermediate-level learners to comprehend the video.
+
+The main contributions of this paper are:
+
+\begin{enumerate}[noitemsep]
+\item An interactive video viewer with features to help language learners
+learn vocabulary.
+\item A system for extracting subtitles from various sources, including
+hard-subtitled video where the subtitles are baked into the video stream.
+\item A system to automatically annotate subtitles with word definitions
+and romanizations to display to language learners.
+\item A user study that shows that learners learn more vocabulary using Smart Subtitles than with dual subtitles, with no changes in enjoyment or comprehension.
+\end{enumerate}
 
 %The Smart Subtitles system 
 %However, these presentation formats are unsatisfactory, because
@@ -181,6 +212,17 @@ of the quality of their video summaries.
 \section{Related Work}
 
 Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure~\ref{fig:figure2} and are described in more detail below.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\columnwidth]{subtitle-types-2column}
+\caption{Illustration showing how Smart Subtitles
+compares to existing ways that a Chinese video can be presented
+to English-speaking viewers and language learners.
+Note that GliFlix does not actually support Chinese.
+To conserve space, this diagram only shows the vocabulary-learning features of Smart Subtitles, not the navigation features.}
+\label{fig:figure2}
+\end{figure}
 
 \subsection{Presenting Videos to Foreign Viewers}
 
@@ -193,17 +235,6 @@ to learn the foreign language.
 Subtitles have had mixed reactions in the context of language learning. Some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them \cite{danan2004captioning}.
 That said, other studies have found them to provide little benefit to language learners in learning vocabulary \cite{danan1992reversed}. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation \cite{mitterer2009foreign}.
 The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as the experience level of the learners \cite{bianchi2008captions}.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\columnwidth]{subtitle-types-2column}
-\caption{Illustration showing how Smart Subtitles
-compares to existing ways that a Chinese video can be presented
-to English-speaking viewers and language learners.
-Note that GliFlix does not actually support Chinese.
-To conserve space, this diagram only shows the vocabulary-learning features of Smart Subtitles, not the navigation features.}
-\label{fig:figure2}
-\end{figure}
 
 \subsection{Presenting Videos to Language Learners}
 
