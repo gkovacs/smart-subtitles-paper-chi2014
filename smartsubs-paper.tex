@@ -67,6 +67,8 @@ breaklinks=true,
 
 \usepackage{float}
 
+\usepackage{stfloats}
+
 % End of preamble. Here it comes the document.
 \begin{document}
 
@@ -140,7 +142,7 @@ such as dual subtitles,
 %learners, such as reverse subtitles, dual subtitles, and GliFlix.
 %Dual subtitles,
 which simultaneously display subtitles in both the viewer's native
-language as well as the language of the video.
+language and the language of the video.
 %This is considered one of most effective
 %ways to learn vocabulary from videos.
 However, we believe we can do even better at teaching vocabulary
@@ -154,7 +156,7 @@ that maximizes vocabulary learning, while ensuring that the learner
 fully understands the video and enjoys watching it.
 
 Smart Subtitles includes features to help
-learners learn vocabulary and navigate the video.
+learners learn vocabulary and navigate videos.
 It prominently displays a transcript of the foreign-language dialog, to
 focus learners' attention on the foreign language.
 Learners can view definitions for words in the video by hovering over them.
@@ -169,7 +171,7 @@ part of the video stream. The Smart Subtitles system currently supports videos i
 Japanese, French, German, and Spanish, and can be extended to other languages
 for which bilingual dictionaries are availabe.
 
-We ran a within-subjects user study with 8 intermediate Chinese learners to compare the effectiveness of Smart Subtitles in teaching vocabulary against dual subtitles. After viewing a 5-minute video with one of the tools, participants took a vocabulary quiz to test vocabulary learning,
+We ran a within-subjects user study with 8 intermediate Chinese learners to compare Smart Subtitles against dual subtitles in their effectiveness in teaching vocabulary. After viewing a 5-minute video with one of the tools, participants took a vocabulary quiz,
 wrote a summary of the video clip,
 and filled out a questionnaire. They then repeated this procedure on another clip, with the other tool.
 
@@ -193,15 +195,15 @@ are often sufficient for intermediate-level learners to comprehend the video.
 
 The main contributions of this paper are:
 
-\begin{enumerate}[noitemsep]
+\begin{itemize}[noitemsep]
 \item An interactive video viewer with features to help language learners
-learn vocabulary.
+learn vocabulary and navigate videos.
 \item A system for extracting subtitles from various sources, including
 hard-subtitled video where the subtitles are baked into the video stream.
 \item A system to automatically annotate subtitles with word definitions
 and romanizations to display to language learners.
 \item A user study that shows that learners learn more vocabulary using Smart Subtitles than with dual subtitles, with no changes in enjoyment or comprehension.
-\end{enumerate}
+\end{itemize}
 
 %The Smart Subtitles system 
 %However, these presentation formats are unsatisfactory, because
@@ -244,6 +246,19 @@ The mixed results that studies have found on the effects of subtitles on languag
 In addition to subtitles, there exist other techniques to aid language learning
 while watching videos, described below.
 
+\begin{figure*}[bp]
+\centering
+\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate-cropped}
+\caption{Smart Subtitles has several interactive features. It allows users to easily navigate the video and
+review lines of dialog, either by clicking onto the line of dialog to replay,
+scrolling the mouse wheel,
+or pressing arrow keys on the keyboard. Users can hover over words
+in the dialog to show their definitions, as shown on the left.
+If word-level translations are not sufficient for users to understand the dialog, they can also press a button to show a translation for the current
+line of dialog, as shown on the right.}
+\label{fig:figure25}
+\end{figure*}
+
 With a \emph{transcript}, also known as a \emph{caption}, the video is shown along with the text in the
 language of the audio, which in this case is the foreign language. Transcripts are generally used to
 assist hearing-impaired viewers. However, they can also be beneficial to language learners for
@@ -251,6 +266,8 @@ comprehension, particularly if they have better reading ability than
 listening comprehension ability \cite{danan2004captioning}. However,
 for learners with only basic reading abilities,
 using only a transcript can lead to decreased comprehension compared to subtitles \cite{bianchi2008captions}.
+
+
 
 With \emph{reverse subtitles} \cite{danan1992reversed}, the video has an audio track and a single subtitle, just as with regular
 subtitles. However, in reverse subtitles, the audio is in the native language, and
@@ -261,19 +278,6 @@ language text. The presentation of the foreign language in written form may also
 certain learners whose reading comprehension ability is stronger than their listening
 comprehension. That said, because the foreign language is presented only in written form, the
 learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
-
-\begin{figure*}[t!]
-\centering
-\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate}
-\caption{Smart Subtitles has several interactive features. It allows users to easily navigate the video and
-review lines of dialog, either by clicking onto the line of dialog to replay,
-scrolling the mouse wheel,
-or pressing arrow keys on the keyboard. Users can hover over words
-in the dialog to show their definitions, as shown on the left.
-If word-level translations are not sufficient for users to understand the dialog, they can also press a button to show a translation for the current
-line of dialog, as shown on the right.}
-\label{fig:figure25}
-\end{figure*}
 
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
 Dual subtitles simultaneously display a subtitle in the viewer's native language, and a transcript in the original language. This way, a learner can both read and hear the dialog in the foreign language, and still have a translation
@@ -287,16 +291,16 @@ towards the foreign language.
 
 \emph{GliFlix} \cite{gliflix} is a variant on conventional native-language subtitles which adds translations to the foreign language for the most common words that
 appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is (\emph{est}) a line of dialog", showing that \emph{is} in French is \emph{est}. In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
-subtitles, though not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that because it shows only the most common vocabulary words in a dialog, learners may not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, this approach is likely less beneficial than dual subtitles for
+subtitles, but not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that it shows only the most common vocabulary words in a dialog, so learners may not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, it is likely less beneficial than dual subtitles for
 other language-learning tasks such as learning pronunciation and grammar.
 
-\pagebreak
+%\pagebreak
 
 \section{Smart Subtitles Interface}
 
-We developed a video viewing tool, Smart Subtitles, which provides language learners with interactive subtitles to enhance the learning experience. Smart Subtitles support features for learning vocabulary and navigating dialogs, which are shown in Figure~\ref{fig:figure3} and will be discussed in the following section. Smart Subtitles can be used by English-speaking students to view videos in Chinese, Japanese, French, German, or Spanish. %Smart Subtitles can be automatically generated for any video, provided that a caption is available.
+We developed a video viewing tool, Smart Subtitles, which provides language learners with interactive subtitles to enhance the learning experience. Smart Subtitles support features for learning vocabulary and navigating dialogs, which are shown in Figure~\ref{fig:figure3} and will be discussed in this section. Smart Subtitles can be used by English speakers to view videos in Chinese, Japanese, French, German, and Spanish. %Smart Subtitles can be automatically generated for any video, provided that a caption is available.
 
-Smart Subtitles is an interactive web application that runs in the user's browser. The user simply provides it with a video and a caption, from either a streaming service or from the local filesystem, and
+Smart Subtitles is an interactive web application that runs in the user's browser. The user simply provides it with a video and a caption, from either a streaming service or from the local filesystem,
 and the interactive video player will start once it finishes automatically
 generating annotations.
 
@@ -400,12 +404,12 @@ That said, hard-subtitled videos are ubiquitous, particularly online. Chinese-la
 
 Our hard-subtitle extraction algorithm takes advantage of the following properties of subtitles. We have generally found these properties to hold true in the Chinese-language hard-subbed material we have observed:
 
-\begin{enumerate}[noitemsep]
+\begin{itemize}[noitemsep]
 \item Subtitles in the same video are of the same color, with some variance due to compression artifacts.
 \item Subtitles in the same video are consistently shown in the same vertical region of the screen.
 \item The position of subtitles is static, so they do not move around and are not animated.
 \item Characters in the subtitle have many corners. This is a Chinese-specific assumption, owing to the graphical complexity of Chinese characters.
-\end{enumerate}
+\end{itemize}
 
 Our hard-subtitle extraction algorithm first attempts to determine the color
 of the subtitle. To do so, it first runs the Harris corner detector \cite{harris1988combined}
@@ -479,6 +483,8 @@ more likely definitions of a word higher on the definition list.
 However, because the translation-sense disambiguation feature was not yet implemented at the time of our user study, users were instead shown word definitions ranked according to their overall frequency of usage,
 as stated by the dictionary.
 
+\pagebreak
+
 \subsection{Getting Translations for Full Lines of Dialog}
 
 Translations for full lines of dialog are obtained from a subtitle track in the viewer's native language, if it was provided to 
@@ -509,14 +515,16 @@ Participants were paid \$20 for participating in the hour-long study.
 
 The questions our study sought to answer are:
 
-\begin{enumerate}[noitemsep]
+\begin{itemize}[noitemsep]
 \item Will users learn more vocabulary using Smart Subtitles than with dual subtitles?
 \item Will viewing times differ between the tools?
 \item Will viewers' self-assessed enjoyability differ between the tools?
 \item Will viewers' self-assessed comprehension differ between the tools?
 \item Will summaries viewers write about the clips after viewing differ in quality between the tools?
 \item Which of the features of Smart Subtitles will users find helpful and actually end up using?
-\end{enumerate}
+\end{itemize}
+
+\pagebreak
 
 \subsection{Procedure}
 
@@ -582,7 +590,7 @@ Finally, we asked for free-form feedback about the user's impressions of the too
 We made the following conclusions from our study, which will be explained in
 further detail in the following sections:
 
-\begin{enumerate}[noitemsep]
+\begin{itemize}[noitemsep]
 \item Users learned over twice as much vocabulary using Smart Subtitles than with dual subtitles.
 \item Viewing times did not differ significantly between the tools.
 \item Viewers' self-assessed enjoyability did not differ significantly between the tools.
@@ -590,13 +598,13 @@ further detail in the following sections:
 \item Quality ratings of summaries viewers wrote did not differ significantly
 between the tools.
 \item Users made extensive use of both the word-level translations and the dialog-navigation features of Smart Subtitles, and described these as helpful.
-\end{enumerate}
+\end{itemize}
 
 \subsection{Vocabulary Learning}
 
 Since the vocabulary quiz answers were done in free-response format, a third-party native Chinese speaker was asked to mark the learners' quiz answers as being either correct or incorrect. The grader was blind as to which condition or which learner the answer was coming from.
 
-As shown in Figure~\ref{fig:figure6}, both the average number of words which were correctly defined and the number of new words learned was greater with Smart Subtitles than with dual subtitles. We measured the number of new words learned as the number of correctly defined words, excluding words that participants had marked as previously known. There was no significant difference in the number of words known beforehand in each condition. A t-test shows that there were significantly more questions correctly answered (t=3.49, df=7, p $<$ 0.05) and new words learned (t=5, df=7, p $<$ 0.005) when using Smart Subtitles.
+We measured the number of new words learned as the number of correctly defined words, excluding words that participants had marked as previously known. As shown in Figure~\ref{fig:figure6}, learners correctly answered more questions and learned more new words when using Smart Subtitles.
 
 \begin{figure}[!h]
 \centering
@@ -604,6 +612,11 @@ As shown in Figure~\ref{fig:figure6}, both the average number of words which wer
 \caption{Vocabulary quiz results, with standard error bars.}
 \label{fig:figure6}
 \end{figure}
+
+A t-test shows that there were significantly more questions correctly answered (t=3.49, df=7, p $<$ 0.05) and new words learned (t=5, df=7, p $<$ 0.005) when using Smart Subtitles.
+There was no significant difference in the number of words known beforehand in each condition.
+
+%\pagebreak
 
 Although we did not evaluate pronunciation directly, Smart Subtitles' display of pinyin appeared to bring additional attention towards the vocabulary pronunciations. In our vocabulary quizzes, we gave the participants a synthesized pronunciation of the word, in the event that they did not recognize the Chinese characters. We opted to provide a synthesized pronunciation, as opposed to the pinyin directly, as they would not have been exposed to pinyin in the Dual Subtitles condition. This, predictably, allowed participants to correctly define a few additional words in both conditions. That said, there was a slightly increased level of gain in the Smart Subtitles condition when pronunciation was provided, with an additional 1.1 words correctly answered on average, than in the Dual Subtitles condition, with an additional .3 words correctly answered on average.
 
@@ -623,10 +636,13 @@ Thus, the dialog-based navigation feature appears to have saved enough time in t
 \label{fig:figure7}
 \end{figure}
 
+\pagebreak
 
 \subsection{Self-Assessment Results}
 
-As shown in Figure~\ref{fig:figure8}, responses indicated that learners considered it easier to learn new words with Smart Subtitles, (t=3.76, df=7, p $<$ 0.005), and rated their understanding of the videos as similar in both cases. The viewing experience with Smart Subtitles was rated to be slightly more enjoyable on average (t=1.90, df=7, p=0.08). Free-form feedback from participants indicates that an increased perceived ability to follow the original Chinese dialog contributed to the enjoyability result.
+As shown in Figure~\ref{fig:figure8}, responses indicated that learners considered it easier to learn new words with Smart Subtitles, (t=3.76, df=7, p $<$ 0.005), and rated their understanding of the videos as similar in both cases. The viewing experience with Smart Subtitles was rated to be slightly more enjoyable on average (t=1.90, df=7, p=0.08). Free-form feedback indicates that viewers' increased perceived ability to follow the original Chinese dialog contributed to the enjoyability of Smart Subtitles.
+
+%\pagebreak
 
 \begin{figure}[!h]
 \centering
