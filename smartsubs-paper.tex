@@ -248,7 +248,7 @@ while watching videos, described below.
 
 \begin{figure*}[bp]
 \centering
-\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate-cropped}
+\includegraphics[width=2\columnwidth]{seekdialog-horizontal-translate-cropped2}
 \caption{Smart Subtitles has several interactive features. It allows users to easily navigate the video and
 review lines of dialog, either by clicking onto the line of dialog to replay,
 scrolling the mouse wheel,
@@ -273,28 +273,26 @@ With \emph{reverse subtitles} \cite{danan1992reversed}, the video has an audio t
 subtitles. However, in reverse subtitles, the audio is in the native language, and
 the subtitle shows the foreign language. This takes advantage of the fact that subtitle reading is
 a semi-automatic behavior \cite{d2002foreign}, meaning that the presence of text on the screen tends to attract
-people's eyes to it, causing them to read it. Therefore, this should attract attention to the foreign-
-language text. The presentation of the foreign language in written form may also be helpful with
+people's eyes to it, causing them to read it. Therefore, this should attract attention to the foreign-language text. The presentation of the foreign language in written form may also be helpful with
 certain learners whose reading comprehension ability is stronger than their listening
 comprehension. That said, because the foreign language is presented only in written form, the
-learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system, such as Chinese.
+learner may not end up learning the pronunciation, particularly with a language with a non-phonetic writing system such as Chinese.
 
 With \emph{dual subtitles}, the audio track for the video is kept as the original, foreign language.
 Dual subtitles simultaneously display a subtitle in the viewer's native language, and a transcript in the original language. This way, a learner can both read and hear the dialog in the foreign language, and still have a translation
 available. Thus, of these options, dual subtitles provide the most information to the learner.
-Indeed, dual subtitles have been found to be at least as effective for vocabulary acquisition as
+Dual subtitles have been found to be at least as effective for vocabulary acquisition as
 either subtitles or captions alone \cite{raine2012incidental}.
 However, in our own interviews with Chinese language learners who regularly viewed Chinese movies
-with dual subtitles, they stated they generally read the English subtitles first to comprehend the video and often did not have time to read the Chinese subtitles. This suggests that dual subtitles may not be sufficiently
-focusing the user's attention
+with dual subtitles, they stated they generally read the English subtitles first to comprehend the video and often did not have time to read the Chinese subtitles.
+This suggests that dual subtitles may not be sufficiently
+directing the user's attention
 towards the foreign language.
 
 \emph{GliFlix} \cite{gliflix} is a variant on conventional native-language subtitles which adds translations to the foreign language for the most common words that
 appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is (\emph{est}) a line of dialog", showing that \emph{is} in French is \emph{est}. In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
 subtitles, but not dual subtitles. Compared to dual subtitles, GliFlix has the disadvantage that it shows only the most common vocabulary words in a dialog, so learners may not learn all the vocabulary in the video. Additionally, because GliFlix presents the foreign vocabulary in the order of the viewer's native language, it is likely less beneficial than dual subtitles for
 other language-learning tasks such as learning pronunciation and grammar.
-
-%\pagebreak
 
 \section{Smart Subtitles Interface}
 
@@ -303,6 +301,8 @@ We developed a video viewing tool, Smart Subtitles, which provides language lear
 Smart Subtitles is an interactive web application that runs in the user's browser. The user simply provides it with a video and a caption, from either a streaming service or from the local filesystem,
 and the interactive video player will start once it finishes automatically
 generating annotations.
+
+\pagebreak
 
 \subsection{Vocabulary Learning Features}
 
