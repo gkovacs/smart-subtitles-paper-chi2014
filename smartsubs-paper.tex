@@ -134,13 +134,8 @@ Students studying foreign languages often wish to enjoy authentic foreign-langua
 provide good support for language learners. For example, if a learner were watching anime, and did not recognize a word in the dialog, the learner would normally have
 to listen carefully to the word, pause the video, and look the word up in a dictionary. This is a time-consuming process which detracts from the enjoyability of watching the content. Alternatively, learners could simply watch a version that is dubbed, or a version with subtitles in their native language to enjoy the content. However, they might not learn the foreign language effectively this way.
 
-This paper presents Smart Subtitles, an interactive
-foreign-language video viewing tool
-that maximizes vocabulary learning, while ensuring that the learner
-fully understands the video and enjoys watching it.
-
-There are many existing ways that videos can be presented to language
-learners, such as subtitles, transcripts, reverse subtitles, dual subtitles, and GliFlix.
+There are many other existing ways that videos can be presented to language
+learners, such as reverse subtitles, dual subtitles, and GliFlix.
 Dual subtitles, which simultaneously display subtitles in both the viewer's native
 language as well as the language of the video,
 are one of most effective
@@ -150,10 +145,32 @@ than dual subtitles
 by introducing interactive features into the video player
 to support common language learning tasks.
 
-Our video player, \emph{Smart Subtitles}, includes features to help
-learners learn vocabulary, navigate the video, and understand the video.
-It prominently displays a 
-Learners can easily review the current and previous lines of dialog by clicking on them to replay the video.
+This paper presents \emph{Smart Subtitles}, an interactive, web-based
+foreign-language video viewing tool
+that maximizes vocabulary learning, while ensuring that the learner
+fully understands the video and enjoys watching it.
+
+Smart Subtitles includes features to help
+learners learn vocabulary and navigate the video.
+It prominently displays a transcript of the foreign-language dialog, to
+focus learners' attention on the foreign language.
+Learners can view definitions for words in the video dialog by hovering over them.
+Learners can review the current and previous lines of dialog by clicking on them to replay the video.
+If word-level translations are not enough for learners to understand the
+current line of dialog, they can click a button to show an English translation.
+
+We ran a within-subjects user study with 8 intermediate Chinese learners to compare the effectiveness of Smart Subtitles in teaching vocabulary against dual subtitles. After viewing a 5-minute Chinese video clip with one of the tools, participants took a vocabulary quiz to test their vocabulary learning,
+wrote a summary of the video clip,
+and filled out a questionnaire. They then repeated the task on another clip, with the other tool.
+We found that learners learned twice over as many new vocabulary
+words when they viewed clips using Smart Subtitles.
+The amount of time they spent viewing the video was the same in both conditions.
+They report they enjoyed
+using Smart Subtitles to view videos, and found it
+significantly easier to learn vocabulary with the Smart Subtitles interface.
+Their comprehension of the videos was equally high in both conditions,
+as indicated by both self-assessments as well as expert ratings
+of the quality of their video summaries.
 
 %The Smart Subtitles system 
 %However, these presentation formats are unsatisfactory, because
@@ -218,6 +235,10 @@ Dual subtitles simultaneously display a subtitle in the viewer's native language
 available. Thus, of these options, dual subtitles provide the most information to the learner.
 Indeed, dual subtitles have been found to be at least as effective for vocabulary acquisition as
 either subtitles or captions alone \cite{raine2012incidental}.
+However, in our own interviews with Chinese language learners who regularly viewed Chinese movies
+with dual subtitles, they stated they generally read the English subtitles first to comprehend the video and often did not have time to read the Chinese subtitles. This suggests that dual subtitles may not be sufficiently
+focusing the user's attention
+towards the foreign language.
 
 \emph{GliFlix} \cite{gliflix} is a variant on conventional native-language subtitles which adds translations to the foreign language for the most common words that
 appear in the dialog. For example, for a French dialog, instead of ``This is a line of dialog", GliFlix would show ``This is (\emph{est}) a line of dialog", showing that \emph{is} in French is \emph{est}. In user studies with learners beginning to study French, they attain larger rates of vocabulary acquisition compared to regular
