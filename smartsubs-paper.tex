@@ -99,14 +99,14 @@ tailored towards vocabulary learning.
 Smart Subtitles can be automatically generated from common video sources
 such as subtitled DVDs.
 They provide features such as vocabulary definitions on hover, and
-dialog-based video navigation. In our preliminary user study
-with 8 intermediate-level students studying Chinese,
-participants learned more than twice as much
-vocabulary with Smart Subtitles than with dual
-Chinese-English subtitles, when testing short-term retention.
+dialog-based video navigation. In our pilot study
+with intermediate learners studying Chinese,
+participants correctly defined over twice as many new words
+in a post-viewing vocabulary test when they used Smart Subtitles, compared to dual
+Chinese-English subtitles.
 Learners spent the same amount of time watching clips
 with each tool, and enjoyed viewing videos
-with Smart Subtitles just as much as with dual subtitles.
+with Smart Subtitles as much as with dual subtitles.
 Learners understood videos equally well using either tool,
 as indicated by self-assessments
 and independent evaluations of their summaries.
@@ -166,15 +166,17 @@ of video sources, such as DVDs. It also includes a novel algorithm for
 extracting subtitles from hard-subtitled videos, where the subtitle is
 part of the video stream. The Smart Subtitles system currently supports videos in Chinese,
 Japanese, French, German, and Spanish, and can be extended to other languages
-for which bilingual dictionaries are availabe.
+for which bilingual dictionaries are available.
 
 We ran a within-subjects user study with 8 intermediate Chinese learners to compare Smart Subtitles against dual subtitles in their effectiveness in teaching vocabulary. After viewing a 5-minute video with one of the tools, participants took a vocabulary quiz,
 wrote a summary of the video clip,
 and filled out a questionnaire. They then repeated this procedure on another clip, with the other tool.
 
-We found that learners learned over twice as many new vocabulary
+We found that learners correctly defined over twice as many new vocabulary
 words when they viewed clips using Smart Subtitles, compared to dual subtitles.
-The amount of time they spent viewing the video was the same in both conditions.
+However, as the vocabulary quiz was administered immediately after
+viewing, this only tested short-term vocabulary retention.
+The amount of time learners spent viewing the videos was the same in both conditions.
 Users enjoyed
 using Smart Subtitles to view videos, and found it
 significantly easier to learn vocabulary with the Smart Subtitles interface.
@@ -210,6 +212,15 @@ and romanizations to display to language learners.
 
 \section{Related Work}
 
+Video has several advantages as a medium for language learning.
+By presenting vocabulary in the context of a natural dialog, as opposed to isolated drills,
+video promotes \emph{contextualized learning}, helping learners understand how
+vocabulary is actually used in the language \cite{videocontext}.
+In classroom contexts, students are sometimes given supplemental materials
+explaining vocabulary and concepts that appear in the video,
+referred to as \emph{advance organizers}, which help combine the benefits of
+drill-based learning with the context provided by videos \cite{advanceorganizer}.
+
 Videos in foreign languages have been adapted for foreign viewers and languages learners in many ways. These are summarized in Figure~\ref{fig:figure2} and are described in more detail below.
 
 \begin{figure}[!h]
@@ -219,7 +230,7 @@ Videos in foreign languages have been adapted for foreign viewers and languages 
 compares to existing ways that a Chinese video can be presented
 to English-speaking viewers and language learners.
 Note that GliFlix does not actually support Chinese.
-To conserve space, this diagram only shows the vocabulary-learning features of Smart Subtitles, not the navigation features.}
+To conserve space, this mockup only shows the vocabulary-learning features of Smart Subtitles, not the navigation features.}
 \label{fig:figure2}
 \end{figure}
 
@@ -232,9 +243,12 @@ Another approach is to provide \emph{subtitles} with the video. Here, the foreig
 Thus, the learner will hear the foreign language, but will not see its written form.
 %Therefore, they must pay close attention to the audio
 %to learn the foreign language.
-Subtitles have had mixed reactions in the context of language learning. Some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them \cite{danan2004captioning}.
+
+Subtitles have been extensively studied in the context of language learning,
+with mixed results.
+Some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them \cite{danan2004captioning}.
 That said, other studies have found them to provide little benefit to language learners in learning vocabulary \cite{danan1992reversed}. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation \cite{mitterer2009foreign}.
-The mixed results that studies have found on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as learners' experience levels \cite{bianchi2008captions}.
+These mixed results on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as learners' experience levels \cite{bianchi2008captions}.
 
 \subsection{Presenting Videos to Language Learners}
 
@@ -319,9 +333,10 @@ Tones are an essential part of Chinese pronunciation that learners often struggl
 
 \subsection{Navigation Features}
 
-We developed the navigation features of our interface based
-on foreign language learners’ video viewing patterns. In
-interviews with language learners, they reported
+The navigation features of our interface are motivated by
+work suggesting that learners are able to comprehend videos better when
+they are able to navigate videos according to syntactically meaningful chunks of dialog \cite{shea2000leveling}.
+Additionally, in our interviews with language learners, they reported
 that they often reverse-seeked to the beginning of the current
 line of dialog to review the portion that had just been said.
 Therefore, we aimed to make this process as seamless as possible.
@@ -500,7 +515,7 @@ The Chinese and English subtitles were extracted from a DVD. %and OCR-ed to prod
 
 \subsection{Participants}
 
-Our study participants were 8 undergraduate students who were enrolled in a third-semester Chinese class. Our study was conducted at the end of the semester, so participants had approximately 3 full semesters of Chinese learning experience. 4 of our participants were male, and 4 were female.
+Our study participants were 8 undergraduate students who were enrolled in a third-semester Chinese class. Our study was conducted at the end of the semester, so participants had approximately 3 full semesters of Chinese learning experience. None of the participants were from Chinese-speaking backgrounds. They stated in our pre-test survey that they did not have extensive exposure to Chinese outside of the 3-semester class sequence. 4 of our participants were male, and 4 were female.
 Participants were paid \$20 for participating in the hour-long study.
 
 \subsection{Research Questions}
@@ -712,6 +727,9 @@ this system's overall effectiveness for long-term language learning.
 In particular, because vocabulary quizzes were administered immediately
 after viewing the 5-minute clips,
 this study tests only short-term vocabulary retention.
+Additionally, as we asked on learners to self-report whether they had previously known words,
+instead of using a pre-test,
+this could have led to measurement errors.
 Our participants were also limited to intermediate-level learners who had taken a year
 of foreign-language courses,
 so further work is needed to determine whether this video-viewing approach can be used by
@@ -731,7 +749,7 @@ to help language learners learn vocabulary while watching videos.
 They can be automatically generated from
 common sources of videos and subtitles, such as DVDs.
 
-Our preliminary user study found that intermediate-level learners learned more
+Our pilot study found that intermediate-level learners learned more
 vocabulary with Smart Subtitles than dual Chinese-
 English subtitles, and rated their comprehension and
 enjoyment of the video as similarly high.
