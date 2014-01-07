@@ -149,7 +149,7 @@ to support common language learning tasks.
 
 This paper presents \emph{Smart Subtitles}, an interactive, web-based
 foreign-language video viewing tool
-that maximizes vocabulary learning, while ensuring that the learner
+that aims to maximize vocabulary learning while ensuring that the learner
 fully understands the video and enjoys watching it.
 
 Smart Subtitles includes features to help
@@ -248,7 +248,7 @@ Subtitles have been extensively studied in the context of language learning,
 with mixed results.
 Some studies have found them to be beneficial for vocabulary acquisition, compared to watching videos without them \cite{danan2004captioning}.
 That said, other studies have found them to provide little benefit to language learners in learning vocabulary \cite{danan1992reversed}. Additionally, the presence of subtitles are considered to detract attention from the foreign-language audio and pronunciation \cite{mitterer2009foreign}.
-These mixed results on the effects of subtitles on language learning suggests that their effectiveness depends on factors such as learners' experience levels \cite{bianchi2008captions}.
+These mixed results on the effects of subtitles on language learning suggest that their effectiveness depends on factors such as learners' experience levels \cite{bianchi2008captions}.
 
 \subsection{Presenting Videos to Language Learners}
 
@@ -450,7 +450,7 @@ The accuracy of our hard-subtitle extraction algorithm depends on the resolution
 the font of the subtitle. It generally works best on videos with 1280x720 or better resolution, and with subtitles that have distinct, thick outlines. The choice of OCR engine is also crucial. Using Tesseract instead of OneNote more than tripled the character error rate,
 as Tesseract is less resilient to extraneous pixels in the input.
 
-As an illustrative example, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized roughly 80\% of the dialog lines completely correctly. Overall, roughly 95\% of all characters were correctly recognized. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining dialog-level errors were due to characters that were misrecognized by OCR.
+As an illustrative example, on a set of 4 high-resolution Chinese hard-subtitled 5-minute video clips, the algorithm recognized 80\% of the dialog lines completely correctly. Overall, 95\% of all characters were correctly recognized. 2\% of the errors at the dialog line level were due to the algorithm missing the presence of a line of dialog, as the OCR engine often failed to recognize text on lines consisting of only a single character or two. The remaining dialog-level errors were due to characters that were misrecognized by OCR.
 
 %Unfortunately, because a single character-level error will often make the entire line of dialog incomprehensible to learners, in the Smart Subtitles application the dialog-level error rate is the metric of interest. The subtitles output by our algorithm thus require manual corrections before they can be presented to learners. However, the presence and timings of 98\% of dialog lines were correctly recognized, so the information output by our algorithm helps with specifying subtitle timings.
 
