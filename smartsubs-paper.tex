@@ -313,37 +313,34 @@ Smart Subtitles is an interactive web application that runs in the user's browse
 and the interactive video player will start once it finishes automatically
 generating annotations.
 
+\subsection{Exploratory Interviews}
+
+We designed our interface based on informal interviews with 6 language learners who enjoyed watching subtitled videos.
+We asked them what aids they used while watching videos, what they did when they encountered new words, and what potential features they might find useful for learning. Interviewees reported that they rarely looked
+up words when watching videos, but thought they would do so more if it were easier to do. Many also indicated that they wanted easier ways to review parts of dialog that they didn't understand. Our features for vocabulary learning and navigation were designed to address these needs.
+
 \subsection{Vocabulary Learning Features}
 
-We developed the vocabulary learning features of our interface based
-on interviews with language learners who enjoyed watching subtitled videos. Learners stated they often encountered
-unknown words in the video, and wanted to know their definitions.
 Our interface allows the user to hover over words in
 the dialog to show their definitions, as shown in Figure~\ref{fig:figure25}.
 
 Sometimes, word-level translations are not enough for the learner to comprehend the current line of dialog. To address these cases, Smart Subtitles includes a button that shows learners a translation for the currently displayed line of dialog when pressed, as shown in Figure~\ref{fig:figure25}.
 
-Some learners cited their poor ability to
-read Chinese characters
-as limiting the usefulness of captions and dual subtitles.
-For Japanese and Chinese, the interface shows learners how to pronounce
-Chinese characters. For Chinese, it shows \emph{pinyin}, the standard romanization system for Chinese. For Japanese, it shows \emph{hiragana}, the Japanese phonetic writing system. These phonetic writing systems are taught to learners in first-semester Chinese and Japanese classes.
+Because poor ability to
+read Chinese characters can limit the usefulness of Chinese and Japanese captions,
+the interface shows learners how to pronounce
+Chinese characters. For Chinese, it shows \emph{pinyin}, the standard romanization system for Chinese. For Japanese, it shows \emph{hiragana}, the Japanese phonetic writing system. These  writing systems are taught to learners in first-semester Chinese and Japanese classes.
 
 Tones are an essential part of Chinese pronunciation that learners often struggle to remember. To make them more visually salient, Smart Subtitles color-codes the pinyin displayed according to the tone, in addition to displaying the tone mark. The tone colorization scheme is taken from the Chinese through Tone and Color series \cite{tonecolor}, which claims to help learners remember tones, and has been adopted by popular online dictionaries for Chinese learners \cite{mdbg}.
 
 \subsection{Navigation Features}
 
-The navigation features of our interface are motivated by
-work suggesting that learners are able to comprehend videos better when
-they are able to navigate videos according to syntactically meaningful chunks of dialog \cite{shea2000leveling}.
-Additionally, in our interviews with language learners, they reported
-that they often reverse-seeked to the beginning of the current
-line of dialog to review the portion that had just been said.
-Therefore, we aimed to make this process as seamless as possible.
-In our interface, clicking on a section of the dialog will
+To address interviewees'
+desire for easy ways to review unfamiliar lines of dialogs, in our interface, clicking on a section of the dialog will
 seek the video to the start of that dialog.
 
-Another activity that language learners reported doing was attempting to locate the line of dialog where a particular word or phrase had been said. Therefore, we enable easy seeking through the video based on dialog. The transcript is prominently shown, and can be navigated by pressing the up/down keys, scrolling, or clicking on lines of dialog, as shown in Figure~\ref{fig:figure25}. Users can also search the video for occurrences of particular words in the dialog.
+Additionally, because prior work suggests that learners are able to comprehend videos better when
+they are able to navigate videos according to syntactically meaningful chunks of dialog \cite{shea2000leveling}, we enable easy seeking through the video based on dialog. The transcript is prominently shown, and can be navigated by pressing the up/down keys, scrolling, or clicking on lines of dialog, as shown in Figure~\ref{fig:figure25}. Users can also search the video for occurrences of particular words in the dialog.
 
 \section{Implementation}
 
